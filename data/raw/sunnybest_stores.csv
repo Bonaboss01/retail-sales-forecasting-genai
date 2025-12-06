@@ -1,0 +1,8 @@
+store_id,store_name,city,area,region,store_type,store_size
+1,SunnyBest Benin Main,Benin,Oredo,Edo South,Mall,Large
+2,SunnyBest Ekpoma,Ekpoma,Esan West,Edo Central,High Street,Medium
+3,SunnyBest Auchi,Auchi,Etsako West,Edo North,High Street,Medium
+4,SunnyBest Irrua,Irrua,Esan Central,Edo Central,Plaza,Small
+5,SunnyBest Igueben,Igueben,Igueben,Edo Central,High Street,Small
+6,SunnyBest Agenebode,Agenebode,Etsako East,Edo North,Plaza,Small
+7,SunnyBest Ogwa,Ogwa,Esan West,Edo Central,High Street,Small

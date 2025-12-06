@@ -1,0 +1,121 @@
+product_id,product_name,category,brand,regular_price,cost_price,is_seasonal,warranty_months
+1001,LG Televisions Model-120,Televisions,LG,445838,332772,1,6
+1002,Tecno Mobile Model-199,Mobile Phones,Tecno,500410,346208,1,6
+1003,Tecno Mobile Model-905,Mobile Phones,Tecno,399365,244124,1,12
+1004,Infinix Mobile Model-121,Mobile Phones,Infinix,305796,221242,1,12
+1005,Samsung Mobile Model-781,Mobile Phones,Samsung,462752,326219,1,24
+1006,Infinix Mobile Model-786,Mobile Phones,Infinix,193855,125337,1,12
+1007,Century Small Model-584,Small Appliances,Century,16267,11687,0,24
+1008,Binatone Small Model-415,Small Appliances,Binatone,75232,46117,0,6
+1009,Hisense Air Model-439,Air Conditioners,Hisense,831912,501803,1,12
+1010,Acer Laptops Model-134,Laptops & Computers,Acer,722843,505292,0,24
+1011,Anker Accessories Model-489,Accessories,Anker,8943,6716,0,12
+1012,Acer Laptops Model-829,Laptops & Computers,Acer,321829,195112,0,12
+1013,Samsung Televisions Model-915,Televisions,Samsung,303165,238085,1,24
+1014,Acer Laptops Model-819,Laptops & Computers,Acer,413160,327319,0,6
+1015,Century Small Model-863,Small Appliances,Century,24268,17408,0,6
+1016,Binatone Small Model-164,Small Appliances,Binatone,54976,36243,0,6
+1017,Samsung Mobile Model-238,Mobile Phones,Samsung,190151,129108,1,24
+1018,Tecno Mobile Model-589,Mobile Phones,Tecno,131858,99454,1,6
+1019,LG Televisions Model-132,Televisions,LG,364806,280903,1,12
+1020,Itel Mobile Model-646,Mobile Phones,Itel,547867,398579,1,24
+1021,LG Refrigerators Model-104,Refrigerators,LG,239182,177628,1,6
+1022,Panasonic Air Model-114,Air Conditioners,Panasonic,715270,434946,1,24
+1023,Infinix Mobile Model-340,Mobile Phones,Infinix,513852,329041,1,24
+1024,Acer Laptops Model-848,Laptops & Computers,Acer,561357,352457,0,24
+1025,LG Air Model-798,Air Conditioners,LG,264899,208891,1,24
+1026,Philips Small Model-745,Small Appliances,Philips,58689,44698,0,6
+1027,Hisense Refrigerators Model-447,Refrigerators,Hisense,252906,168149,1,24
+1028,Samsung Televisions Model-844,Televisions,Samsung,534589,320809,1,6
+1029,Lenovo Laptops Model-926,Laptops & Computers,Lenovo,378576,236221,0,24
+1030,HP Laptops Model-541,Laptops & Computers,HP,268451,180593,0,6
+1031,Glo Telecom Model-724,Telecom Services,Glo,12149,9020,1,6
+1032,Airtel Telecom Model-835,Telecom Services,Airtel,5237,3572,1,24
+1033,Generic Accessories Model-515,Accessories,Generic,26556,18533,0,12
+1034,Panasonic Air Model-866,Air Conditioners,Panasonic,722794,487113,1,6
+1035,Huawei Network Model-610,Network Devices,Huawei,72083,57427,0,12
+1036,Samsung Mobile Model-563,Mobile Phones,Samsung,425528,282616,1,12
+1037,Infinix Mobile Model-445,Mobile Phones,Infinix,203883,149958,1,24
+1038,Haier Thermocool Refrigerators Model-739,Refrigerators,Haier Thermocool,242483,176778,1,6
+1039,LG Refrigerators Model-250,Refrigerators,LG,757162,505945,1,6
+1040,Hisense Air Model-723,Air Conditioners,Hisense,654594,422677,1,12
+1041,LG Air Model-751,Air Conditioners,LG,757409,605359,1,12
+1042,Panasonic Air Model-915,Air Conditioners,Panasonic,798376,523554,1,24
+1043,ZTE Network Model-724,Network Devices,ZTE,79040,57573,0,24
+1044,Infinix Mobile Model-198,Mobile Phones,Infinix,249426,168227,1,6
+1045,Glo Telecom Model-921,Telecom Services,Glo,14707,9722,1,12
+1046,LG Televisions Model-497,Televisions,LG,698467,518566,1,6
+1047,Acer Laptops Model-294,Laptops & Computers,Acer,208871,152460,0,24
+1048,Binatone Small Model-569,Small Appliances,Binatone,75079,46454,0,24
+1049,Asus Laptops Model-126,Laptops & Computers,Asus,879650,684727,0,24
+1050,ZTE Network Model-552,Network Devices,ZTE,117888,84334,0,6
+1051,Lenovo Laptops Model-271,Laptops & Computers,Lenovo,777234,585809,0,6
+1052,Oraimo Accessories Model-991,Accessories,Oraimo,22453,17580,0,24
+1053,Itel Mobile Model-198,Mobile Phones,Itel,428896,304753,1,24
+1054,9mobile Telecom Model-260,Telecom Services,9mobile,690,456,1,24
+1055,Dell Laptops Model-669,Laptops & Computers,Dell,839944,570270,0,12
+1056,Anker Accessories Model-738,Accessories,Anker,12455,9144,0,24
+1057,Hisense Refrigerators Model-492,Refrigerators,Hisense,276089,206557,1,6
+1058,Century Small Model-966,Small Appliances,Century,69748,45984,0,12
+1059,Asus Laptops Model-135,Laptops & Computers,Asus,369963,259813,0,6
+1060,Huawei Network Model-982,Network Devices,Huawei,97575,72243,0,12
+1061,Acer Laptops Model-953,Laptops & Computers,Acer,182097,112680,0,24
+1062,Dell Laptops Model-413,Laptops & Computers,Dell,855086,680963,0,12
+1063,Oraimo Accessories Model-543,Accessories,Oraimo,9777,7474,0,12
+1064,Asus Laptops Model-202,Laptops & Computers,Asus,401451,258198,0,6
+1065,Itel Mobile Model-966,Mobile Phones,Itel,259407,183211,1,24
+1066,Binatone Small Model-758,Small Appliances,Binatone,52233,36733,0,12
+1067,TP-Link Network Model-445,Network Devices,TP-Link,99634,68527,0,24
+1068,Itel Mobile Model-740,Mobile Phones,Itel,338093,259383,1,6
+1069,Samsung Mobile Model-217,Mobile Phones,Samsung,462942,300934,1,12
+1070,Binatone Small Model-803,Small Appliances,Binatone,64012,46578,0,6
+1071,Hisense Air Model-755,Air Conditioners,Hisense,352764,241262,1,12
+1072,Samsung Mobile Model-146,Mobile Phones,Samsung,425612,265247,1,6
+1073,Infinix Mobile Model-573,Mobile Phones,Infinix,230196,159948,1,12
+1074,Haier Thermocool Refrigerators Model-456,Refrigerators,Haier Thermocool,584963,371241,1,12
+1075,Samsung Televisions Model-861,Televisions,Samsung,440260,342229,1,24
+1076,Oraimo Accessories Model-357,Accessories,Oraimo,14540,10712,0,24
+1077,Tecno Mobile Model-774,Mobile Phones,Tecno,267459,191258,1,12
+1078,Binatone Small Model-367,Small Appliances,Binatone,20052,14219,0,6
+1079,LG Televisions Model-496,Televisions,LG,584999,456925,1,6
+1080,Dell Laptops Model-826,Laptops & Computers,Dell,771820,477670,0,24
+1081,Itel Mobile Model-517,Mobile Phones,Itel,184585,135914,1,12
+1082,Acer Laptops Model-174,Laptops & Computers,Acer,232745,172079,0,6
+1083,Oraimo Accessories Model-968,Accessories,Oraimo,28548,18739,0,12
+1084,TP-Link Network Model-195,Network Devices,TP-Link,103042,70328,0,12
+1085,Asus Laptops Model-378,Laptops & Computers,Asus,456955,313379,0,6
+1086,Huawei Network Model-695,Network Devices,Huawei,75069,58592,0,12
+1087,ZTE Network Model-332,Network Devices,ZTE,86234,53464,0,6
+1088,Huawei Network Model-483,Network Devices,Huawei,55270,43738,0,24
+1089,Hisense Refrigerators Model-198,Refrigerators,Hisense,105486,65048,1,6
+1090,Century Small Model-243,Small Appliances,Century,36972,27746,0,24
+1091,Huawei Network Model-497,Network Devices,Huawei,109780,76723,0,24
+1092,LG Air Model-757,Air Conditioners,LG,138102,97939,1,24
+1093,MTN Telecom Model-329,Telecom Services,MTN,17837,12907,1,6
+1094,Itel Mobile Model-894,Mobile Phones,Itel,251415,154507,1,12
+1095,Binatone Small Model-747,Small Appliances,Binatone,37556,23170,0,24
+1096,LG Televisions Model-316,Televisions,LG,318067,205896,1,24
+1097,Hisense Air Model-975,Air Conditioners,Hisense,844699,520925,1,6
+1098,Panasonic Air Model-550,Air Conditioners,Panasonic,548345,365225,1,12
+1099,Dell Laptops Model-994,Laptops & Computers,Dell,814795,582003,0,6
+1100,Binatone Small Model-604,Small Appliances,Binatone,54298,38913,0,12
+1101,LG Televisions Model-216,Televisions,LG,628248,486087,1,12
+1102,9mobile Telecom Model-914,Telecom Services,9mobile,13472,10696,1,6
+1103,Anker Accessories Model-775,Accessories,Anker,32860,26241,0,6
+1104,LG Air Model-625,Air Conditioners,LG,738353,467556,1,6
+1105,HP Laptops Model-755,Laptops & Computers,HP,651108,481419,0,24
+1106,Century Small Model-507,Small Appliances,Century,28323,22424,0,12
+1107,Philips Small Model-415,Small Appliances,Philips,61427,44802,0,12
+1108,LG Air Model-601,Air Conditioners,LG,227016,148012,1,24
+1109,Samsung Mobile Model-831,Mobile Phones,Samsung,410896,280330,1,6
+1110,Asus Laptops Model-693,Laptops & Computers,Asus,315421,194059,0,12
+1111,LG Televisions Model-923,Televisions,LG,655278,513630,1,12
+1112,Generic Accessories Model-473,Accessories,Generic,34548,21867,0,6
+1113,TP-Link Network Model-953,Network Devices,TP-Link,82292,61712,0,6
+1114,Huawei Network Model-198,Network Devices,Huawei,66540,40769,0,6
+1115,Itel Mobile Model-808,Mobile Phones,Itel,504159,310093,1,6
+1116,Glo Telecom Model-664,Telecom Services,Glo,15606,11097,1,6
+1117,Anker Accessories Model-977,Accessories,Anker,18456,11963,0,6
+1118,Asus Laptops Model-447,Laptops & Computers,Asus,696237,540032,0,12
+1119,Dell Laptops Model-870,Laptops & Computers,Dell,658153,463380,0,12
+1120,LG Refrigerators Model-833,Refrigerators,LG,740053,587302,1,12
