@@ -5,9 +5,7 @@
 # ⭐ **2. FULL PROJECT_PLAN.md (copy & paste to new file)**
 # -------------------------------------------------------------
 
-Create a file in your repo:  
-`PROJECT_PLAN.md`  
-Paste the following:
+
 
 ```markdown
 # 📘 SunnyBest Telecommunications – AI Retail Forecasting & GenAI Analytics System  
