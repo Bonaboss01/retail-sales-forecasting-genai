@@ -1,13 +1,3 @@
-
----
-
-# -------------------------------------------------------------
-# ⭐ **2. FULL PROJECT_PLAN.md (copy & paste to new file)**
-# -------------------------------------------------------------
-
-
-
-```markdown
 # 📘 SunnyBest Telecommunications – AI Retail Forecasting & GenAI Analytics System  
 ### **FULL PROJECT PLAN**
 
