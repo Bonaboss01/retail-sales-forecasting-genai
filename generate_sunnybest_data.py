@@ -417,19 +417,40 @@ def sales_and_inventory(calendar_df, stores_df, products_df, promotions_df) -> (
 
                 # --- Inventory & stockout ---
                 # approximate starting inventory around 7–21 days of mean demand
+                                # --- Inventory & stockout (UPDATED) ---
+
+                # Base stockout probability by category
+                if cat in ["Mobile Phones", "Network Devices", "Accessories", "Telecom Services"]:
+                    base_stockout_prob = 0.12  # higher turnover items
+                else:
+                    base_stockout_prob = 0.05  # lower, but still possible
+
+                # Typical stock level: ~2–6 days of mean demand (tighter, more realistic)
                 if demand_mean > 0:
-                    low_stock = max(1, int(demand_mean * 3))
-                    high_stock = max(low_stock + 1, int(demand_mean * 15))
+                    low_stock = max(1, int(demand_mean * 1.5))
+                    high_stock = max(low_stock + 1, int(demand_mean * 6))
                 else:
                     low_stock, high_stock = 1, 10
 
                 starting_inventory = np.random.randint(low_stock, high_stock)
 
-                # units_sold is limited by inventory
-                potential_sales = int(round(demand))
+                # Expected demand for the day
+                potential_sales = max(0, int(round(demand)))
+
+                # Random chance to deliberately under-stock (simulate supply issues)
+                random_stockout = np.random.rand() < base_stockout_prob
+
+                if random_stockout and potential_sales > 0:
+                    # Force a situation where demand > inventory
+                    starting_inventory = max(
+                        1, int(potential_sales * np.random.uniform(0.3, 0.8))
+                    )
+
+                # Units sold limited by inventory
                 units_sold = min(starting_inventory, potential_sales)
                 ending_inventory = starting_inventory - units_sold
                 stockout_flag = int(units_sold < potential_sales)
+
 
                 revenue = units_sold * price
 

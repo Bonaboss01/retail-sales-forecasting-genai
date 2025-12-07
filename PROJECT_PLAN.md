@@ -5,7 +5,7 @@
 
 ## 🎯 1. Project Overview
 
-SunnyBest Telecommunications operates electronics & telecom retail stores across **Benin, Ekpoma, Auchi, Irrua, Igueben, Agenebode, and Ogwa** in Edo State.
+SunnyBest Telecommunications operates electronics & telecom retail stores across **Benin, Ekpoma, Auchi, Irrua, Igueben, Agenebode, and Ogwa** in Edo State, Nigeria
 
 The business needs an advanced AI platform that can:
 
