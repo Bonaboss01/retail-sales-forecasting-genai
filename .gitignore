@@ -13,4 +13,7 @@ __pycache__/
 # Ignore large temporary files
 *.csv
 *.parquet
-*.pkl
+- *.pkl
++ # Allow model artifacts
++ !models/
++ !models/*.pkl
