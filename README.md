@@ -54,31 +54,52 @@ This project builds an end-to-end AI-driven forecasting and analytics platform f
 
 ```text
 retail-sales-forecasting-genai/
-│
+├── README.md
+├── pyproject.toml / setup.cfg        # package config (or requirements.txt)
+├── requirements.txt
 ├── data/
-│   └── raw/
-│
+│   ├── raw/
+│   ├── processed/
+│   └── external/
 ├── notebooks/
 │   ├── 01_eda.ipynb
 │   ├── 02_baseline_forecast.ipynb
-│   ├── 03_ml_forecast.ipynb
+│   ├── 03_ml_forecast_xgboost.ipynb
 │   ├── 04_stockout_classification.ipynb
-│   └── 05_genai_assistant.ipynb
-│
+│   ├── 05_promo_uplift_causal.ipynb
+│   └── 06_genai_rag_experiments.ipynb
 ├── src/
+│   ├── config/
+│   │   └── config.yaml
+│   ├── data/
+│   │   ├── make_dataset.py
+│   │   └── simulate_data.py
 │   ├── features/
+│   │   └── build_features.py
 │   ├── models/
+│   │   ├── train_forecast.py
+│   │   ├── train_stockout.py
+│   │   └── predict.py
+│   ├── evaluation/
+│   │   └── evaluate_models.py
+│   ├── api/
+│   │   └── app.py          # FastAPI endpoints
 │   ├── genai/
-│   └── api/
-│
-├── models/
-│
-├── docs/
-│   └── (architecture diagrams, screenshots, notes)
-│
-├── PROJECT_PLAN.md
-├── ROADMAP.md
-├── generate_sunnybest_data.py
-├── requirements.txt
-├── Dockerfile
-└── README.md
+│   │   ├── rag_index.py
+│   │   ├── rag_qa.py
+│   │   └── explain_forecast.py
+│   └── dashboards/
+│       └── streamlit_app.py
+├── mlruns/                  # MLflow tracking (gitignored)
+├── docker/
+│   └── Dockerfile
+├── infra/
+│   └── terraform/           # optional
+├── tests/
+│   ├── test_features.py
+│   ├── test_models.py
+│   └── test_api.py
+└── assets/
+    ├── architecture.png
+    └── screenshots/
+
