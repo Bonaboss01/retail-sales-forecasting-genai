@@ -38,11 +38,11 @@ This project builds an end-to-end AI-driven forecasting and analytics platform f
 | Repository setup | ✅ Completed |
 | Data generation script | ✅ Completed |
 | Synthetic dataset created | ✅ Completed |
-| EDA notebook | 🔄 In Progress |
-| Baseline forecasting | ⏳ Pending |
-| ML forecasting | ⏳ Pending |
-| Stock-out classifier | ⏳ Pending |
-| GenAI insight assistant | ⏳ Pending |
+| EDA notebook | ✅ Completed |
+| Baseline forecasting | ✅ Completed |
+| ML forecasting | ✅ Completed |
+| Stock-out classifier | ✅ Completed |
+| GenAI insight assistant | ✅ Completed |
 | FastAPI backend | ⏳ Pending |
 | Dockerization | ⏳ Pending |
 | AWS Deployment | ⏳ Pending |
