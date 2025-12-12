@@ -50,56 +50,97 @@ This project builds an end-to-end AI-driven forecasting and analytics platform f
 
 ---
 
-## 📁 Recommended Project Structure
+## 📁 Project Structure
 
-```text
 retail-sales-forecasting-genai/
 ├── README.md
-├── pyproject.toml / setup.cfg        # package config (or requirements.txt)
+├── pyproject.toml                 
+├── setup.cfg                      
 ├── requirements.txt
+├── .gitignore
+
 ├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── external/
+│   ├── raw/                      
+│   ├── processed/                 
+│   └── external/                  
+
 ├── notebooks/
 │   ├── 01_eda.ipynb
 │   ├── 02_baseline_forecast.ipynb
 │   ├── 03_ml_forecast_xgboost.ipynb
 │   ├── 04_stockout_classification.ipynb
 │   ├── 05_promo_uplift_causal.ipynb
-│   └── 06_genai_rag_experiments.ipynb
+│   ├── 06_genai_rag_experiments.ipynb
+│   ├── 07_price_elasticity.ipynb
+│   ├── 08_pricing_optimization.ipynb
+│   └── 09_spark_data_processing.ipynb
+
 ├── src/
+│   ├── __init__.py
+│   │
 │   ├── config/
 │   │   └── config.yaml
+│   │
 │   ├── data/
 │   │   ├── make_dataset.py
 │   │   └── simulate_data.py
+│   │
 │   ├── features/
 │   │   └── build_features.py
+│   │
 │   ├── models/
 │   │   ├── train_forecast.py
 │   │   ├── train_stockout.py
 │   │   └── predict.py
-│   ├── evaluation/
-│   │   └── evaluate_models.py
-│   ├── api/
-│   │   └── app.py          # FastAPI endpoints
+│   │
+│   ├── pricing/
+│   │   ├── elasticity_model.py
+│   │   ├── optimize_prices.py
+│   │   ├── simulate_price_scenarios.py
+│   │   └── utils.py
+│   │
 │   ├── genai/
 │   │   ├── rag_index.py
 │   │   ├── rag_qa.py
-│   │   └── explain_forecast.py
-│   └── dashboards/
-│       └── streamlit_app.py
-├── mlruns/                  # MLflow tracking (gitignored)
+│   │   ├── explain_forecast.py
+│   │   └── explain_pricing.py
+│   │
+│   ├── dashboards/
+│   │   └── streamlit_app.py
+│   │
+│   ├── api/
+│   │   └── app.py
+│   │
+│   ├── spark/
+│   │   ├── spark_session.py
+│   │   ├── spark_etl.py
+│   │   ├── spark_aggregations.py
+│   │   └── spark_feature_engineering.py
+│   │
+│   └── warehouse/
+│       ├── snowflake_schema.sql
+│       ├── staging_load.sql
+│       ├── marts.sql
+│       └── queries.sql
+
 ├── docker/
 │   └── Dockerfile
+
 ├── infra/
-│   └── terraform/           # optional
+│   └── terraform/
+
+├── models/
+│   ├── xgb_revenue_forecast.pkl
+│   └── stockout_classifier.pkl
+
+├── mlruns/                       # gitignored (MLflow)
+
 ├── tests/
 │   ├── test_features.py
 │   ├── test_models.py
-│   └── test_api.py
+│   ├── test_api.py
+│   └── test_pricing.py
+
 └── assets/
     ├── architecture.png
     └── screenshots/
-
