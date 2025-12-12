@@ -49,20 +49,17 @@ This project builds an end-to-end AI-driven forecasting and analytics platform f
 | Documentation polish | ⏳ Pending |
 
 ---
-
-## 📁 Project Structure
-
 retail-sales-forecasting-genai/
 ├── README.md
-├── pyproject.toml                 
-├── setup.cfg                      
-├── requirements.txt
-├── .gitignore
+├── pyproject.toml                 # Optional: packaging configuration
+├── setup.cfg                      # Optional: package metadata
+├── requirements.txt               # Python dependencies
+├── .gitignore                     # Files & folders ignored by Git
 
 ├── data/
-│   ├── raw/                      
-│   ├── processed/                 
-│   └── external/                  
+│   ├── raw/                       # Generated CSVs (sales, products, stores, calendar, weather, promos, inventory)
+│   ├── processed/                 # Cleaned & feature-ready datasets, RAG artefacts (gitignored)
+│   └── external/                  # Optional external docs (policy notes, market research, competitor pricing)
 
 ├── notebooks/
 │   ├── 01_eda.ipynb
@@ -79,61 +76,61 @@ retail-sales-forecasting-genai/
 │   ├── __init__.py
 │   │
 │   ├── config/
-│   │   └── config.yaml
+│   │   └── config.yaml             # Paths, modelling parameters, feature definitions
 │   │
 │   ├── data/
-│   │   ├── make_dataset.py
-│   │   └── simulate_data.py
+│   │   ├── make_dataset.py         # Raw → processed dataset pipeline
+│   │   └── simulate_data.py        # Synthetic data generator (SunnyBest)
 │   │
 │   ├── features/
-│   │   └── build_features.py
+│   │   └── build_features.py       # Shared feature engineering logic
 │   │
 │   ├── models/
-│   │   ├── train_forecast.py
-│   │   ├── train_stockout.py
-│   │   └── predict.py
+│   │   ├── train_forecast.py       # Revenue forecasting models
+│   │   ├── train_stockout.py       # Stockout classification models
+│   │   └── predict.py              # Batch & single prediction helpers
 │   │
 │   ├── pricing/
-│   │   ├── elasticity_model.py
-│   │   ├── optimize_prices.py
+│   │   ├── elasticity_model.py     # Price elasticity estimation
+│   │   ├── optimize_prices.py      # Revenue / profit optimisation
 │   │   ├── simulate_price_scenarios.py
 │   │   └── utils.py
 │   │
 │   ├── genai/
-│   │   ├── rag_index.py
-│   │   ├── rag_qa.py
-│   │   ├── explain_forecast.py
-│   │   └── explain_pricing.py
+│   │   ├── rag_index.py             # RAG index creation
+│   │   ├── rag_qa.py                # Retrieval + LLM Q&A pipeline
+│   │   ├── explain_forecast.py      # Natural-language forecast explanations
+│   │   └── explain_pricing.py       # Natural-language pricing explanations
 │   │
 │   ├── dashboards/
-│   │   └── streamlit_app.py
+│   │   └── streamlit_app.py         # Interactive dashboard (Forecasts, Stockouts, Pricing, Q&A)
 │   │
 │   ├── api/
-│   │   └── app.py
+│   │   └── app.py                   # FastAPI service (predictions + GenAI assistant)
 │   │
 │   ├── spark/
-│   │   ├── spark_session.py
-│   │   ├── spark_etl.py
-│   │   ├── spark_aggregations.py
+│   │   ├── spark_session.py         # Spark session management
+│   │   ├── spark_etl.py             # Large-scale ETL
+│   │   ├── spark_aggregations.py    # Aggregations at scale
 │   │   └── spark_feature_engineering.py
 │   │
 │   └── warehouse/
-│       ├── snowflake_schema.sql
-│       ├── staging_load.sql
-│       ├── marts.sql
-│       └── queries.sql
+│       ├── snowflake_schema.sql     # Warehouse schema (DDL)
+│       ├── staging_load.sql         # Staging & ingestion patterns
+│       ├── marts.sql                # Analytics marts
+│       └── queries.sql              # Example business queries
 
 ├── docker/
-│   └── Dockerfile
+│   └── Dockerfile                  # Containerisation for API / dashboard
 
 ├── infra/
-│   └── terraform/
+│   └── terraform/                  # Infrastructure as Code (AWS)
 
 ├── models/
 │   ├── xgb_revenue_forecast.pkl
-│   └── stockout_classifier.pkl
+│   └── stockout_classifier.pkl     # Trained model artefacts (small files only)
 
-├── mlruns/                       # gitignored (MLflow)
+├── mlruns/                         # MLflow experiments (gitignored)
 
 ├── tests/
 │   ├── test_features.py
@@ -142,5 +139,8 @@ retail-sales-forecasting-genai/
 │   └── test_pricing.py
 
 └── assets/
-    ├── architecture.png
-    └── screenshots/
+    ├── architecture.png            # High-level system architecture diagram
+    └── screenshots/                # Dashboard & notebook screenshots
+
+## 📁 Project Structure
+
