@@ -5,7 +5,7 @@ An end-to-end **AI, Machine Learning, and GenAI–driven retail analytics system
 
 This project demonstrates how modern data science, forecasting, pricing analytics, and **Generative AI (RAG + LLMs)** can be combined to support **real-world retail decision-making**.
 
-> ⚠️ Note: SunnyBest Telecommunications is a **fictional company**. All data used in this project is **synthetically generated** for learning and demonstration purposes.
+
 
 ---
 
