@@ -1,57 +1,94 @@
-# retail-sales-forecasting-genai
-## 📦 SunnyBest Telecommunications – AI Retail Forecasting & GenAI System
+# 🧠 AI-Powered Retail Decision Intelligence Platform  
+## 📦 SunnyBest Telecommunications (Synthetic Case Study)
 
-This project builds an end-to-end AI-driven forecasting and analytics platform for **SunnyBest Telecommunications**, a consumer electronics & telecom retailer operating across:
+An end-to-end **AI, Machine Learning, and GenAI–driven retail analytics system** built for a **fictional telecom & consumer electronics retailer — SunnyBest Telecommunications**.
 
-**Benin, Ekpoma, Auchi, Irrua, Igueben, Agenebode, Ogwa (Edo State, Nigeria).**
+This project demonstrates how modern data science, forecasting, pricing analytics, and **Generative AI (RAG + LLMs)** can be combined to support **real-world retail decision-making**.
 
-### 🔍 What this project includes
-
-- ✔ Synthetic retail dataset (sales, weather, promotions, inventory)  
-- ✔ Exploratory Data Analysis (EDA)  
-- ✔ Time-series forecasting (baseline + machine learning models)  
-- ✔ Stock-out prediction (classification)  
-- ✔ GenAI Insight Assistant (RAG + LLM for natural-language analytics)  
-- ✔ FastAPI backend for forecasts + explanations  
-- ✔ Docker + AWS deployment  
+> ⚠️ Note: SunnyBest Telecommunications is a **fictional company**. All data used in this project is **synthetically generated** for learning and demonstration purposes.
 
 ---
 
-## 🧭 Project Phases Overview
+## 🏪 Business Context
 
-| Phase | Description | Deliverables |
-|-------|-------------|--------------|
-| **Phase 1** | Data Generation | Synthetic SunnyBest dataset, folders, scripts |
-| **Phase 2** | Exploratory Data Analysis | EDA notebook, findings, visualizations |
-| **Phase 3** | Forecasting Models | Baseline + ML models, saved artifacts |
-| **Phase 4** | Stock-Out Prediction | Classification model + evaluation |
-| **Phase 5** | GenAI Assistant | RAG pipeline + LLM insight engine |
-| **Phase 6** | Deployment | FastAPI, Docker, AWS EC2 |
-| **Phase 7** | Documentation | README, plan, diagrams |
+SunnyBest Telecommunications operates retail outlets across:
 
----
+**Benin, Ekpoma, Auchi, Irrua, Igueben, Agenebode, Ogwa  
+(Edo State, Nigeria)**
 
-## 📅 Roadmap (Live Project Status)
+The business faces common retail challenges:
+- Demand volatility and seasonality  
+- Stock-outs and inventory inefficiencies  
+- Promotion effectiveness uncertainty  
+- Pricing optimisation decisions  
+- Limited accessibility to insights for non-technical stakeholders  
 
-| Task | Status |
-|------|--------|
-| Repository setup | ✅ Completed |
-| Data generation script | ✅ Completed |
-| Synthetic dataset created | ✅ Completed |
-| EDA notebook | ✅ Completed |
-| Baseline forecasting | ✅ Completed |
-| ML forecasting | ✅ Completed |
-| Stock-out classifier | ✅ Completed |
-| GenAI insight assistant | ✅ Completed |
-| FastAPI backend | ⏳ Pending |
-| Dockerization | ⏳ Pending |
-| AWS Deployment | ⏳ Pending |
-| Documentation polish | ⏳ Pending |
+This project simulates how an **AI-enabled analytics platform** could address these challenges.
 
 ---
 
+## 🎯 Project Objectives
 
-## 📁 Project Structure
+- Build a **production-style analytics and ML system** from raw data to insights
+- Apply **time-series forecasting** and **machine learning**
+- Model **stock-out risk** and **pricing behaviour**
+- Experiment with **GenAI (RAG + LLMs)** for natural-language insights
+- Design a scalable structure ready for **API, Docker, and Cloud deployment**
+
+---
+
+## 🔍 What This Project Demonstrates
+
+- ✔ Synthetic retail data generation (sales, inventory, weather, promotions)
+- ✔ Exploratory Data Analysis (EDA)
+- ✔ Time-series forecasting (statistical + ML)
+- ✔ Stock-out prediction (classification)
+- ✔ Pricing analytics and optimisation experiments
+- ✔ GenAI-assisted analytics using RAG concepts
+- ✔ Production-ready project structure (API / Docker / Infra-ready)
+
+---
+
+## 🚦 Implementation Status
+
+| Component | Status | Notes |
+|---------|--------|-------|
+| Repository structure | ✅ Implemented | Modular, scalable layout |
+| Synthetic data generation | ✅ Implemented | Retail-like dataset |
+| Exploratory Data Analysis | ✅ Implemented | EDA notebooks completed |
+| Baseline forecasting | ✅ Implemented | Statistical benchmarks |
+| ML forecasting (XGBoost) | ✅ Implemented | Model trained & evaluated |
+| Stock-out classification | ✅ Implemented | Binary classifier |
+| Pricing analysis | ⚠️ Partial | Elasticity & optimisation notebooks |
+| GenAI RAG experiments | ⚠️ Experimental | Notebook-based exploration |
+| FastAPI backend | 🛠 Planned | API scaffold designed |
+| Dockerisation | 🛠 Planned | To containerise API & dashboard |
+| AWS deployment | 🛠 Planned | EC2 / S3 / future MLOps |
+
+---
+
+## 🧭 Analytical Components
+
+### 📊 Forecasting
+- Baseline statistical models
+- Machine learning forecasting (XGBoost)
+- Evaluation using appropriate error metrics
+
+### 📦 Stock-Out Prediction
+- Binary classification of stock-out risk
+- Feature engineering from sales, inventory & promotions
+
+### 💰 Pricing Analytics
+- Price elasticity modelling
+- Revenue / profit optimisation scenarios
+- What-if pricing simulations
+
+### 🤖 GenAI Insight Experiments
+- Retrieval-Augmented Generation (RAG)
+- Natural-language questions over retail data
+- LLM-based explanation prototypes (experimental)
+
+---
 
 ## 📁 Project Structure
 
@@ -107,3 +144,23 @@ retail-sales-forecasting-genai/
     ├── architecture.png
     └── screenshots/
 
+
+## Optional Scaling Layer: Spark + Warehouse (Snowflake)
+
+> **Note on Spark:**  
+> This project does not strictly require Spark at its current scale. I included Spark as an optional processing layer to demonstrate how the pipeline could evolve in production as data volumes grow. The core modelling remains in pandas to support faster iteration during development.
+
+### Why Spark?
+As SunnyBest expands (more stores, more SKUs, higher transaction volume), batch ETL and feature engineering can exceed single-machine limits. Spark provides:
+- Distributed data processing for large datasets
+- Scalable ETL pipelines (joins, aggregations, feature generation)
+- A clean path to production data platforms
+
+### How this fits in the pipeline
+- **Current (local / prototyping):** CSV → pandas notebooks → models  
+- **Scaled (production concept):** Raw data → Spark ETL → curated tables → warehouse (e.g., Snowflake) → models & dashboards
+
+### Repository components
+- `notebooks/09_spark_data_processing.ipynb` – Spark ETL demonstration (optional)
+- `src/spark/` – Spark utilities (session, ETL, aggregations, feature engineering)
+- `src/warehouse/` – Example SQL for warehouse staging + marts (conceptual)
