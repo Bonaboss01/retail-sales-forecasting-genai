@@ -1,11 +1,17 @@
 # 🧠 AI-Powered Retail Decision Intelligence Platform  
-## 📦 SunnyBest Telecommunications (Synthetic Case Study)
+## 📦 SunnyBest Telecommunications *(Synthetic Case Study)*
 
-An end-to-end **AI, Machine Learning, and GenAI–driven retail analytics system** built for a **fictional telecom & consumer electronics retailer — SunnyBest Telecommunications**.
+An end-to-end **AI, Machine Learning, and Generative AI–driven retail analytics platform** built for a **telecom and consumer electronics retailer — SunnyBest Telecommunications**.
 
-This project demonstrates how modern data science, forecasting, pricing analytics, and **Generative AI (RAG + LLMs)** can be combined to support **real-world retail decision-making**.
+This project demonstrates how modern data science, forecasting, pricing analytics, and **Generative AI (RAG + LLMs)** can be combined into a single system to support **real-world retail decision-making**, rather than isolated models or dashboards.
 
+---
 
+## 🎯 Project Aim
+
+The aim of this project is to demonstrate how an **AI-powered analytics platform** can support retail decision-making across **demand forecasting, inventory risk management, promotion effectiveness, and pricing optimisation**.
+
+The system integrates traditional analytics, machine learning models, and **Generative AI (RAG + LLMs)** to produce **actionable and explainable insights** that are accessible to both **technical and non-technical stakeholders**.
 
 ---
 
@@ -16,38 +22,59 @@ SunnyBest Telecommunications operates retail outlets across:
 **Benin, Ekpoma, Auchi, Irrua, Igueben, Agenebode, Ogwa  
 (Edo State, Nigeria)**
 
-The business faces common retail challenges:
-- Demand volatility and seasonality  
-- Stock-outs and inventory inefficiencies  
-- Promotion effectiveness uncertainty  
-- Pricing optimisation decisions  
-- Limited accessibility to insights for non-technical stakeholders  
+Like many multi-store retailers, the business faces recurring operational and strategic challenges:
 
-This project simulates how an **AI-enabled analytics platform** could address these challenges.
+- Demand volatility and strong seasonal patterns  
+- Stock-outs leading to lost revenue and poor customer experience  
+- Uncertainty around promotion effectiveness and return on investment  
+- Pricing decisions that directly affect demand and profitability  
+- Limited access to insights for non-technical decision-makers  
+
+This project simulates how an **AI-enabled retail analytics platform** could address these challenges by turning raw data into **decision-ready intelligence**.
 
 ---
 
 ## 🎯 Project Objectives
 
-- Build a **production-style analytics and ML system** from raw data to insights
-- Apply **time-series forecasting** and **machine learning**
-- Model **stock-out risk** and **pricing behaviour**
-- Experiment with **GenAI (RAG + LLMs)** for natural-language insights
-- Design a scalable structure ready for **API, Docker, and Cloud deployment**
+- Design a **production-style analytics and ML system**, from raw data ingestion to business insights  
+- Apply **time-series forecasting** techniques to model retail demand  
+- Predict **stock-out risk** using supervised machine learning  
+- Analyse **promotion uplift** and pricing behaviour through modelling and simulation  
+- Experiment with **Generative AI (RAG + LLMs)** to translate analytical outputs into natural-language insights  
+- Structure the project for **API, Docker, and cloud-ready deployment**  
 
 ---
 
 ## 🔍 What This Project Demonstrates
 
-- ✔ Synthetic retail data generation (sales, inventory, weather, promotions)
-- ✔ Exploratory Data Analysis (EDA)
-- ✔ Time-series forecasting (statistical + ML)
-- ✔ Stock-out prediction (classification)
-- ✔ Pricing analytics and optimisation experiments
-- ✔ GenAI-assisted analytics using RAG concepts
-- ✔ Production-ready project structure (API / Docker / Infra-ready)
+- ✔ Synthetic retail data generation (sales, inventory, promotions, weather, calendar effects)  
+- ✔ Exploratory Data Analysis (EDA) to understand demand patterns and drivers  
+- ✔ Baseline and machine-learning-based demand forecasting  
+- ✔ Stock-out prediction using classification models  
+- ✔ Pricing analytics, elasticity modelling, and optimisation experiments  
+- ✔ GenAI-assisted analytics using Retrieval-Augmented Generation (RAG) concepts  
+- ✔ A production-oriented project structure with clear separation between experimentation, modelling, and deployment  
 
 ---
+
+## 🧩 How to Think About This Project
+
+This is **not** a single-model or accuracy-focused exercise.  
+It is a **decision intelligence system** that demonstrates how analytics, ML, and GenAI can work together to answer questions such as:
+
+- *What will demand look like next month, and why?*  
+- *Which products are at risk of stock-out?*  
+- *Are promotions actually driving incremental sales?*  
+- *How sensitive is demand to price changes?*  
+- *How can insights be explained clearly to non-technical stakeholders?*  
+
+---
+
+### 📌 Notes
+
+- All data used in this project is **synthetic** and created for demonstration purposes.  
+- The architecture reflects how such a system could evolve in a real production environment, while keeping the core models lightweight and interpretable.
+
 
 ## 🚦 Implementation Status
 
