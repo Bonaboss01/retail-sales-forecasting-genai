@@ -128,9 +128,9 @@ retail-sales-forecasting-genai/
 ├── .gitignore                     # Files & folders ignored by Git
 
 ├── data/
-│   ├── raw/                       # Generated CSVs
-│   ├── processed/                 # Feature-ready datasets (gitignored)
-│   └── external/                  # External docs
+│   ├── raw/                       # Generated CSVs (small mode)
+│   ├── processed/                 # Feature-ready datasets / Parquet (large mode, gitignored)
+│   └── external/                  # External docs, notes
 
 ├── notebooks/
 │   ├── 01_eda.ipynb
@@ -144,32 +144,47 @@ retail-sales-forecasting-genai/
 │   └── 09_spark_data_processing.ipynb
 
 ├── src/
-│   ├── config/
-│   ├── data/
-│   ├── features/
-│   ├── models/
-│   ├── pricing/
-│   ├── genai/
-│   ├── dashboards/
-│   ├── api/
-│   ├── spark/
-│   └── warehouse/
+│   ├── config/                    # Configs, paths, parameters
+│   ├── data/                      # Data loading & preparation logic
+│   ├── features/                  # Feature engineering logic
+│   ├── models/                    # Forecasting & classification models
+│   ├── pricing/                   # Elasticity & pricing optimisation logic
+│   ├── dashboards/                # Streamlit / dashboard apps
+│   ├── api/                       # FastAPI service layer
+│   ├── spark/                     # Optional Spark-based ETL & aggregations
+│   ├── warehouse/                 # Analytics marts & SQL schemas
+│   │
+│   └── genai/                     # GenAI Decision Intelligence Layer
+│       ├── copilot.py             # 🧠 Tool-calling router (LLM brain)
+│       ├── tools.py               # 🔧 Wrappers for forecast, pricing & stockout tools
+│       ├── rag_index.py           # Build / load retrieval index
+│       ├── rag_qa.py              # Retrieval + prompt orchestration
+│       │
+│       ├── prompts/               # Prompt templates
+│       │   ├── system.md          # System instructions & persona
+│       │   ├── forecast_explain.md
+│       │   └── pricing_explain.md
+│       │
+│       └── eval/                  # Evaluation & testing of GenAI responses
+│           ├── eval_set.jsonl     # Ground-truth Q&A pairs
+│           └── run_eval.py        # Automated evaluation script
 
 ├── docker/
-│   └── Dockerfile
+│   └── Dockerfile                 # Containerisation for API / dashboard
 
 ├── infra/
-│   └── terraform/
+│   └── terraform/                 # Cloud infrastructure (AWS-ready)
 
 ├── models/
 │   ├── xgb_revenue_forecast.pkl
 │   └── stockout_classifier.pkl
 
-├── mlruns/                        # gitignored
-├── tests/
+├── mlruns/                        # MLflow experiments (gitignored)
+├── tests/                         # Unit & integration tests
 └── assets/
-    ├── architecture.png
-    └── screenshots/
+    ├── architecture.png           # System architecture diagram
+    └── screenshots/               # Dashboard & notebook screenshots
+
 
 
 ## Optional Scaling Layer: Spark + Warehouse (Snowflake)
