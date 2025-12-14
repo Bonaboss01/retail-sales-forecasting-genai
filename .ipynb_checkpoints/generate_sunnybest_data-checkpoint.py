@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from datetime import datetime
+import os  # ✅ ADDED (needed for SCALE_MODE and saving)
 
 # ==============================
 # CONFIG
@@ -8,12 +9,26 @@ from datetime import datetime
 
 np.random.seed(42)
 
+# ✅ ADDED: optional scale mode (default is "small")
+# Run large mode like:  SCALE_MODE=large python generate_sunnybest_data.py
+SCALE_MODE = os.getenv("SCALE_MODE", "small").lower()
+
+# ✅ ADDED: keep your defaults for small mode; override only in large mode
 START_DATE = "2021-01-01"
 END_DATE = "2024-12-31"
-
 N_PRODUCTS = 120
-
 OUTPUT_DIR = "data/raw/"
+SAVE_FORMAT = "csv"   # "csv" for small; "parquet" for large
+N_STORES_EXTRA = 0    # default: keep your 7 stores
+
+if SCALE_MODE == "large":
+    # Large mode: increase rows by increasing products and stores (more realistic than just longer date range)
+    START_DATE = "2018-01-01"
+    END_DATE = "2024-12-31"
+    N_PRODUCTS = 800          # adjust as desired
+    N_STORES_EXTRA = 43       # 7 + 43 = 50 stores total
+    OUTPUT_DIR = "data/processed/"   # keep big outputs out of raw
+    SAVE_FORMAT = "parquet"          # parquet is much faster/smaller for large datasets
 
 # ==============================
 # 1. STORES
@@ -30,6 +45,45 @@ stores_list = [
 ]
 
 stores_df = pd.DataFrame(stores_list)
+
+# ✅ ADDED: optional store expansion (does NOT change your original 7 stores)
+def expand_stores(stores_df: pd.DataFrame, n_extra: int) -> pd.DataFrame:
+    """
+    Adds extra synthetic stores by cloning plausible attributes from the base stores.
+    Keeps your original stores intact.
+    """
+    if n_extra <= 0:
+        return stores_df
+
+    base = stores_df.copy()
+
+    cities = base["city"].unique().tolist()
+    store_types = base["store_type"].unique().tolist()
+    store_sizes = base["store_size"].unique().tolist()
+    regions = base["region"].unique().tolist()
+    areas = base["area"].unique().tolist()
+
+    start_id = int(base["store_id"].max()) + 1
+    extra_rows = []
+
+    for i in range(n_extra):
+        sid = start_id + i
+        city = np.random.choice(cities)
+
+        extra_rows.append({
+            "store_id": sid,
+            "store_name": f"SunnyBest {city} Branch {sid}",
+            "city": city,
+            "area": np.random.choice(areas),
+            "region": np.random.choice(regions),
+            "store_type": np.random.choice(store_types),
+            "store_size": np.random.choice(store_sizes),
+        })
+
+    extra_df = pd.DataFrame(extra_rows)
+    return pd.concat([base, extra_df], ignore_index=True)
+
+stores_df = expand_stores(stores_df, N_STORES_EXTRA)
 
 # ==============================
 # 2. PRODUCTS
@@ -417,19 +471,40 @@ def sales_and_inventory(calendar_df, stores_df, products_df, promotions_df) -> (
 
                 # --- Inventory & stockout ---
                 # approximate starting inventory around 7–21 days of mean demand
+                                # --- Inventory & stockout (UPDATED) ---
+
+                # Base stockout probability by category
+                if cat in ["Mobile Phones", "Network Devices", "Accessories", "Telecom Services"]:
+                    base_stockout_prob = 0.12  # higher turnover items
+                else:
+                    base_stockout_prob = 0.05  # lower, but still possible
+
+                # Typical stock level: ~2–6 days of mean demand (tighter, more realistic)
                 if demand_mean > 0:
-                    low_stock = max(1, int(demand_mean * 3))
-                    high_stock = max(low_stock + 1, int(demand_mean * 15))
+                    low_stock = max(1, int(demand_mean * 1.5))
+                    high_stock = max(low_stock + 1, int(demand_mean * 6))
                 else:
                     low_stock, high_stock = 1, 10
 
                 starting_inventory = np.random.randint(low_stock, high_stock)
 
-                # units_sold is limited by inventory
-                potential_sales = int(round(demand))
+                # Expected demand for the day
+                potential_sales = max(0, int(round(demand)))
+
+                # Random chance to deliberately under-stock (simulate supply issues)
+                random_stockout = np.random.rand() < base_stockout_prob
+
+                if random_stockout and potential_sales > 0:
+                    # Force a situation where demand > inventory
+                    starting_inventory = max(
+                        1, int(potential_sales * np.random.uniform(0.3, 0.8))
+                    )
+
+                # Units sold limited by inventory
                 units_sold = min(starting_inventory, potential_sales)
                 ending_inventory = starting_inventory - units_sold
                 stockout_flag = int(units_sold < potential_sales)
+
 
                 revenue = units_sold * price
 
@@ -474,18 +549,25 @@ sales_df, inventory_df = sales_and_inventory(calendar_df, stores_df, products_df
 # 7. SAVE ALL DATASETS
 # ==============================
 
-import os
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-stores_df.to_csv(os.path.join(OUTPUT_DIR, "sunnybest_stores.csv"), index=False)
-products_df.to_csv(os.path.join(OUTPUT_DIR, "sunnybest_products.csv"), index=False)
-calendar_df.to_csv(os.path.join(OUTPUT_DIR, "sunnybest_calendar.csv"), index=False)
-weather_df.to_csv(os.path.join(OUTPUT_DIR, "sunnybest_weather.csv"), index=False)
-promotions_df.to_csv(os.path.join(OUTPUT_DIR, "sunnybest_promotions.csv"), index=False)
-sales_df.to_csv(os.path.join(OUTPUT_DIR, "sunnybest_sales.csv"), index=False)
-inventory_df.to_csv(os.path.join(OUTPUT_DIR, "sunnybest_inventory.csv"), index=False)
+# ✅ ADDED: save helper (keeps your dataset names; chooses CSV or Parquet based on SAVE_FORMAT)
+def save_df(df: pd.DataFrame, name: str):
+    if SAVE_FORMAT == "parquet":
+        df.to_parquet(os.path.join(OUTPUT_DIR, f"{name}.parquet"), index=False)
+    else:
+        df.to_csv(os.path.join(OUTPUT_DIR, f"{name}.csv"), index=False)
+
+save_df(stores_df, "sunnybest_stores")
+save_df(products_df, "sunnybest_products")
+save_df(calendar_df, "sunnybest_calendar")
+save_df(weather_df, "sunnybest_weather")
+save_df(promotions_df, "sunnybest_promotions")
+save_df(sales_df, "sunnybest_sales")
+save_df(inventory_df, "sunnybest_inventory")
 
 print("✅ Generated SunnyBest datasets in:", OUTPUT_DIR)
+print(f"✅ SCALE_MODE={SCALE_MODE} | format={SAVE_FORMAT}")
 print("Rows - stores:", len(stores_df),
       "| products:", len(products_df),
       "| sales:", len(sales_df))
