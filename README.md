@@ -177,18 +177,104 @@ retail-sales-forecasting-genai/
     ├── architecture.png
     └── screenshots/
 
----
-### Version 2
+```
+
+### Version 2 (With GenAI Agents)
+
+```text
+retail-sales-forecasting-genai/
+├── README.md
+├── pyproject.toml
+├── setup.cfg
+├── requirements.txt
+├── .gitignore
+
+├── scripts/                        # ⭐ NEW: runnable entry points
+│   ├── train_forecast.sh
+│   ├── train_stockout.sh
+│   ├── build_rag_index.sh
+│   ├── run_api.sh
+│   └── run_dashboard.sh
+
+├── data/
+│   ├── raw/
+│   ├── processed/
+│   └── external/
+
+├── notebooks/
+│   ├── 01_eda.ipynb
+│   ├── 02_baseline_forecast.ipynb
+│   ├── 03_ml_forecast_xgboost.ipynb
+│   ├── 04_stockout_classification.ipynb
+│   ├── 05_promo_uplift_causal.ipynb
+│   ├── 06_genai_rag_experiments.ipynb
+│   ├── 07_price_elasticity.ipynb
+│   ├── 08_pricing_optimization.ipynb
+│   └── 09_spark_data_processing.ipynb
+
+├── src/
+│   ├── cli.py                     # ⭐ NEW: unified command interface
+│   │
+│   ├── config/
+│   │   ├── dev.yaml               # ⭐ NEW
+│   │   ├── prod.yaml              # ⭐ NEW
+│   │   └── model_params.yaml      # ⭐ NEW
+│   │
+│   ├── data/
+│   ├── features/
+│   ├── models/
+│   ├── pricing/
+│   ├── dashboards/
+│   ├── api/
+│   ├── spark/
+│   ├── warehouse/
+│   │
+│   └── genai/
+│       ├── copilot.py
+│       ├── tools.py
+│       ├── rag_index.py
+│       ├── rag_qa.py
+│       │
+│       ├── agent/                 # ⭐ NEW: explicit agent layer
+│       │   ├── agent.py
+│       │   ├── tools.py
+│       │   ├── memory.py
+│       │   └── policies.py
+│       │
+│       ├── prompts/
+│       │   ├── system.md
+│       │   ├── forecast_explain.md
+│       │   └── pricing_explain.md
+│       │
+│       └── eval/
+│           ├── eval_set.jsonl
+│           └── run_eval.py
+
+├── docker/
+│   └── Dockerfile
+
+├── infra/
+│   └── terraform/
+
+├── models/
+│   ├── xgb_revenue_forecast.pkl
+│   └── stockout_classifier.pkl
+
+├── mlruns/
+
+├── tests/
+│   ├── test_make_dataset.py
+│   ├── test_features.py
+│   ├── test_api_health.py
+│   └── test_genai_copilot.py
+
+└── assets/
+    ├── architecture.png
+    ├── demo_flow.png
+    └── screenshots/
 
 
-
-
-
-
-
-
-
-
+```
 
 ### GenAI Agent (Planned Extension)
 
