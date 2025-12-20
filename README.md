@@ -186,8 +186,8 @@ retail-sales-forecasting-genai/
     ├── architecture.png           # System architecture diagram
     └── screenshots/               # Dashboard & notebook screenshots
 
----
 
+```md
 
 ### Version 2. (With GenAI Agents)
 ``` text
