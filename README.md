@@ -177,9 +177,10 @@ retail-sales-forecasting-genai/
     ├── architecture.png
     └── screenshots/
 
-```text
 ---
-### Version 2 
+### Version 2
+
+
 
 
 
