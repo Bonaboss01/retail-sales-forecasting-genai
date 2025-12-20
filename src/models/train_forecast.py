@@ -15,8 +15,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 
 # project imports
-from data.make_dataset import build_merged_dataset
-from features.build_features import build_forecast_features
+from src.data.make_dataset import build_merged_dataset
+from src.features.build_features import build_forecast_features
+
 
 
 # -----------------------------
@@ -68,7 +69,14 @@ def train_forecast_model() -> dict:
 
     # Evaluate
     preds = model.predict(X_val)
-    rmse = mean_squared_error(y_val, preds, squared=False)
+    # rmse = mean_squared_error(y_val, preds, squared=False)
+    # Evaluate
+    preds = model.predict(X_val)
+
+    mse = mean_squared_error(y_val, preds)
+    rmse = mse ** 0.5
+
+
 
     # Save
     joblib.dump(model, MODEL_PATH)
