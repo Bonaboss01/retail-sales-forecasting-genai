@@ -187,7 +187,6 @@ retail-sales-forecasting-genai/
     └── screenshots/               # Dashboard & notebook screenshots
 
 
-```md
 
 ### Version 2. (With GenAI Agents)
 ``` text
