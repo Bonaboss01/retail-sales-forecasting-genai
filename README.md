@@ -115,24 +115,22 @@ It is a **decision intelligence system** that demonstrates how analytics, ML, an
 - Natural-language questions over retail data
 - LLM-based explanation prototypes (experimental)
 
+## 📁 Project Structure
+
+### Version 1
+
+```text
 retail-sales-forecasting-genai/
 ├── README.md
-├── pyproject.toml
-├── setup.cfg
-├── requirements.txt
-├── .gitignore
-
-├── scripts/
-│   ├── train_forecast.sh
-│   ├── train_stockout.sh
-│   ├── build_rag_index.sh
-│   ├── run_api.sh
-│   └── run_dashboard.sh
+├── pyproject.toml                 # Optional: packaging configuration
+├── setup.cfg                      # Optional
+├── requirements.txt               # Python dependencies
+├── .gitignore                     # Files & folders ignored by Git
 
 ├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── external/
+│   ├── raw/                       # Generated CSVs (small mode)
+│   ├── processed/                 # Feature-ready datasets / Parquet (large mode, gitignored)
+│   └── external/                  # External docs, notes
 
 ├── notebooks/
 │   ├── 01_eda.ipynb
@@ -146,11 +144,7 @@ retail-sales-forecasting-genai/
 │   └── 09_spark_data_processing.ipynb
 
 ├── src/
-│   ├── cli.py
 │   ├── config/
-│   │   ├── dev.yaml
-│   │   ├── prod.yaml
-│   │   └── model_params.yaml
 │   ├── data/
 │   ├── features/
 │   ├── models/
@@ -164,7 +158,6 @@ retail-sales-forecasting-genai/
 │       ├── tools.py
 │       ├── rag_index.py
 │       ├── rag_qa.py
-│       ├── agent/
 │       ├── prompts/
 │       └── eval/
 
@@ -182,8 +175,17 @@ retail-sales-forecasting-genai/
 ├── tests/
 └── assets/
     ├── architecture.png
-    ├── demo_flow.png
     └── screenshots/
+
+
+
+
+
+
+
+
+
+
 
 ### GenAI Agent (Planned Extension)
 
