@@ -186,7 +186,7 @@ retail-sales-forecasting-genai/
     ├── architecture.png           # System architecture diagram
     └── screenshots/               # Dashboard & notebook screenshots
 
-
+---
 
 ### Version 2. (With GenAI Agents)
 ``` text
@@ -281,6 +281,7 @@ retail-sales-forecasting-genai/
     ├── demo_flow.png              # ⭐ NEW: request → tools → response
     └── screenshots/
 
+---
 
 ### GenAI Agent (Planned Extension)
 
@@ -296,6 +297,8 @@ while agent-based orchestration is planned as a future enhancement.
 
 > **Note on Spark:**  
 > This project does not strictly require Spark at its current scale. I included Spark as an optional processing layer to demonstrate how the pipeline could evolve in production as data volumes grow. The core modelling remains in pandas to support faster iteration during development.
+
+---
 
 ### Why Spark?
 As SunnyBest expands (more stores, more SKUs, higher transaction volume), batch ETL and feature engineering can exceed single-machine limits. Spark provides:
