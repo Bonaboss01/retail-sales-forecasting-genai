@@ -115,81 +115,6 @@ It is a **decision intelligence system** that demonstrates how analytics, ML, an
 - Natural-language questions over retail data
 - LLM-based explanation prototypes (experimental)
 
----
-
-## 📁 Project Structure 
-
-## Version 1
-```text
-retail-sales-forecasting-genai/
-├── README.md
-├── pyproject.toml                 # Optional: packaging configuration
-├── setup.cfg                      # Optional
-├── requirements.txt               # Python dependencies
-├── .gitignore                     # Files & folders ignored by Git
-
-├── data/
-│   ├── raw/                       # Generated CSVs (small mode)
-│   ├── processed/                 # Feature-ready datasets / Parquet (large mode, gitignored)
-│   └── external/                  # External docs, notes
-
-├── notebooks/
-│   ├── 01_eda.ipynb
-│   ├── 02_baseline_forecast.ipynb
-│   ├── 03_ml_forecast_xgboost.ipynb
-│   ├── 04_stockout_classification.ipynb
-│   ├── 05_promo_uplift_causal.ipynb
-│   ├── 06_genai_rag_experiments.ipynb
-│   ├── 07_price_elasticity.ipynb
-│   ├── 08_pricing_optimization.ipynb
-│   └── 09_spark_data_processing.ipynb
-
-├── src/
-│   ├── config/                    # Configs, paths, parameters
-│   ├── data/                      # Data loading & preparation logic
-│   ├── features/                  # Feature engineering logic
-│   ├── models/                    # Forecasting & classification models
-│   ├── pricing/                   # Elasticity & pricing optimisation logic
-│   ├── dashboards/                # Streamlit / dashboard apps
-│   ├── api/                       # FastAPI service layer
-│   ├── spark/                     # Optional Spark-based ETL & aggregations
-│   ├── warehouse/                 # Analytics marts & SQL schemas
-│   │
-│   └── genai/                     # GenAI Decision Intelligence Layer
-│       ├── copilot.py             # 🧠 Tool-calling router (LLM brain)
-│       ├── tools.py               # 🔧 Wrappers for forecast, pricing & stockout tools
-│       ├── rag_index.py           # Build / load retrieval index
-│       ├── rag_qa.py              # Retrieval + prompt orchestration
-│       │
-│       ├── prompts/               # Prompt templates
-│       │   ├── system.md          # System instructions & persona
-│       │   ├── forecast_explain.md
-│       │   └── pricing_explain.md
-│       │
-│       └── eval/                  # Evaluation & testing of GenAI responses
-│           ├── eval_set.jsonl     # Ground-truth Q&A pairs
-│           └── run_eval.py        # Automated evaluation script
-
-├── docker/
-│   └── Dockerfile                 # Containerisation for API / dashboard
-
-├── infra/
-│   └── terraform/                 # Cloud infrastructure (AWS-ready)
-
-├── models/
-│   ├── xgb_revenue_forecast.pkl
-│   └── stockout_classifier.pkl
-
-├── mlruns/                        # MLflow experiments (gitignored)
-├── tests/                         # Unit & integration tests
-└── assets/
-    ├── architecture.png           # System architecture diagram
-    └── screenshots/               # Dashboard & notebook screenshots
-
----
-
-### Version 2. (With GenAI Agents)
-``` text
 retail-sales-forecasting-genai/
 ├── README.md
 ├── pyproject.toml
@@ -197,7 +122,7 @@ retail-sales-forecasting-genai/
 ├── requirements.txt
 ├── .gitignore
 
-├── scripts/                        # ⭐ NEW: runnable entry points
+├── scripts/
 │   ├── train_forecast.sh
 │   ├── train_stockout.sh
 │   ├── build_rag_index.sh
@@ -221,13 +146,11 @@ retail-sales-forecasting-genai/
 │   └── 09_spark_data_processing.ipynb
 
 ├── src/
-│   ├── cli.py                     # ⭐ NEW: unified command interface
-│   │
+│   ├── cli.py
 │   ├── config/
-│   │   ├── dev.yaml               # ⭐ NEW
-│   │   ├── prod.yaml              # ⭐ NEW
-│   │   └── model_params.yaml      # ⭐ NEW
-│   │
+│   │   ├── dev.yaml
+│   │   ├── prod.yaml
+│   │   └── model_params.yaml
 │   ├── data/
 │   ├── features/
 │   ├── models/
@@ -236,27 +159,14 @@ retail-sales-forecasting-genai/
 │   ├── api/
 │   ├── spark/
 │   ├── warehouse/
-│   │
 │   └── genai/
 │       ├── copilot.py
 │       ├── tools.py
 │       ├── rag_index.py
 │       ├── rag_qa.py
-│       │
-│       ├── agent/                 # ⭐ NEW: explicit agent layer
-│       │   ├── agent.py
-│       │   ├── tools.py
-│       │   ├── memory.py
-│       │   └── policies.py
-│       │
+│       ├── agent/
 │       ├── prompts/
-│       │   ├── system.md
-│       │   ├── forecast_explain.md
-│       │   └── pricing_explain.md
-│       │
 │       └── eval/
-│           ├── eval_set.jsonl
-│           └── run_eval.py
 
 ├── docker/
 │   └── Dockerfile
@@ -269,19 +179,11 @@ retail-sales-forecasting-genai/
 │   └── stockout_classifier.pkl
 
 ├── mlruns/
-
-├── tests/                         # ⭐ slightly clarified purpose
-│   ├── test_make_dataset.py
-│   ├── test_features.py
-│   ├── test_api_health.py
-│   └── test_genai_copilot.py
-
+├── tests/
 └── assets/
     ├── architecture.png
-    ├── demo_flow.png              # ⭐ NEW: request → tools → response
+    ├── demo_flow.png
     └── screenshots/
-
----
 
 ### GenAI Agent (Planned Extension)
 
