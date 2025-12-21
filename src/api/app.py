@@ -16,6 +16,8 @@ from pydantic import BaseModel, Field
 
 from src.models.predict import predict_from_row, predict_example_from_existing_data
 
+from src.genai.copilot import run_copilot
+
 
 app = FastAPI(
     title="AI-Powered Retail Decision Intelligence Platform",
@@ -86,3 +88,20 @@ def predict_example(
     /predict/example?date=2024-12-25&store_id=1&product_id=1001
     """
     return predict_example_from_existing_data(date=date, store_id=store_id, product_id=product_id)
+
+
+# minimal docs store (later we load from files)
+DOCS: List[dict] = [
+    {"title": "Promo uplift summary", "text": "Promotions show uplift strongest in Mobile Phones and Accessories..."},
+    {"title": "Stockout model summary", "text": "Stockouts increase with high demand, promotions, and low starting inventory..."},
+    {"title": "Pricing optimisation summary", "text": "Pricing simulation suggests revenue responds to price changes differently by category..."},
+]
+
+class AskRequest(BaseModel):
+    query: str
+    payload: Optional[Dict[str, Any]] = None
+
+@app.post("/ask")
+def ask(req: AskRequest):
+    payload = req.payload or {}
+    return run_copilot(req.query, payload, DOCS)
