@@ -105,3 +105,5 @@ class AskRequest(BaseModel):
 def ask(req: AskRequest):
     payload = req.payload or {}
     return run_copilot(req.query, payload, DOCS)
+
+
