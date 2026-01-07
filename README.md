@@ -70,6 +70,7 @@ It is a **decision intelligence system** that demonstrates how analytics, ML, an
 
 ---
 
+
 ## 📈 Key Findings (Summary)
 
 - Machine learning–based demand forecasting outperforms baseline statistical models across evaluation metrics.
@@ -79,7 +80,21 @@ It is a **decision intelligence system** that demonstrates how analytics, ML, an
 - Uniform discounting strategies are sub-optimal; category-specific pricing approaches consistently perform better.
 
 
+---
 
+## 🧪 Demo Flow (How to Use the System)
+
+1. Launch the Streamlit dashboard.
+2. View high-level business KPIs, including:
+   - Total revenue  
+   - Units sold  
+   - Stock-out rate
+3. Explore historical demand patterns and baseline forecasting results.
+4. Identify product categories and store locations with elevated stock-out risk.
+5. Analyse pricing behaviour and revenue sensitivity through simulation.
+6. *(Experimental)* Query the GenAI layer to generate natural-language explanations of analytical outputs.
+
+---
 
 ## 🚦 Implementation Status
 
