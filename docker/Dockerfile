@@ -1,24 +1,30 @@
+# docker/Dockerfile
 FROM python:3.11-slim
 
-# Set working directory
+# Prevent Python from writing .pyc files + ensure logs flush immediately
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Working directory inside container
 WORKDIR /app
 
-# Install system dependencies (needed for xgboost)
-RUN apt-get update && apt-get install -y \
+# Install system deps (optional but useful for some python wheels)
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first (better caching)
-COPY requirements.txt .
+# Copy dependency file first for better caching
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy the project into the container
+COPY . /app
 
-# Copy project source
-COPY src ./src
-COPY models ./models
+# Let Python find src/ as import root
+ENV PYTHONPATH=/app/src
 
-# Expose API port
+# Expose FastAPI port
 EXPOSE 8000
 
-# Run FastAPI app
-CMD ["python", "-m", "uvicorn", "src.api.app:app", "--host", "0.0.0.0", "--port", "8000"]
+# Run the API
+CMD ["uvicorn", "api.app:app", "--host", "0.0.0.0", "--port", "8000"]

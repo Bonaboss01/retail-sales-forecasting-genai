@@ -1,0 +1,3 @@
+-- Example staging load (conceptual)
+-- Typically: COPY INTO from S3/Azure/GCS stage
+-- COPY INTO SUNNYBEST_ANALYTICS.STG_SALES_ENRICHED FROM @my_stage FILE_FORMAT=(TYPE=CSV);

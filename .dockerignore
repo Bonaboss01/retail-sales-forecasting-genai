@@ -1,11 +1,23 @@
+# git / cache
 .git
 .gitignore
 __pycache__/
 *.pyc
 
+# notebooks & local clutter
 .ipynb_checkpoints/
 .DS_Store
 
+# data (optional — choose what you want inside image)
+data/raw/
+data/processed/
+
+# experiments
 mlruns/
+
+# venv
 .venv/
 venv/
+
+
+

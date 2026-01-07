@@ -10,15 +10,19 @@ Feature engineering for SunnyBest models.
 
 from __future__ import annotations
 
-from typing import Tuple
+from typing import Tuple, List
 import pandas as pd
+import numpy as np
 
 
 # -----------------------------
 # Feature selection helpers
 # -----------------------------
 def select_base_features(df: pd.DataFrame) -> pd.DataFrame:
-    """Select core explanatory features (minimal transforms)."""
+    """
+    Select core explanatory features already validated in notebooks.
+    No transformations yet — just clean selection.
+    """
 
     feature_cols = [
         # pricing
@@ -49,12 +53,20 @@ def select_base_features(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def encode_categoricals(X: pd.DataFrame) -> pd.DataFrame:
-    """One-hot encode categorical variables; leave numeric columns unchanged."""
+    """
+    One-hot encode categorical variables.
+    Keeps numeric columns unchanged.
+    """
     cat_cols = X.select_dtypes(include=["object", "category"]).columns.tolist()
     if not cat_cols:
         return X
 
-    return pd.get_dummies(X, columns=cat_cols, drop_first=True)
+    X_encoded = pd.get_dummies(
+        X,
+        columns=cat_cols,
+        drop_first=True
+    )
+    return X_encoded
 
 
 # -----------------------------
@@ -62,15 +74,18 @@ def encode_categoricals(X: pd.DataFrame) -> pd.DataFrame:
 # -----------------------------
 def build_forecast_features(
     df: pd.DataFrame,
-    target: str = "revenue",
+    target: str = "revenue"
 ) -> Tuple[pd.DataFrame, pd.Series]:
-    """Build features and target for revenue forecasting."""
+    """
+    Build features and target for revenue forecasting.
+    """
 
     if target not in df.columns:
         raise KeyError(f"Target column '{target}' not found in df")
 
     X = select_base_features(df)
     X = encode_categoricals(X)
+
     y = df[target]
 
     return X, y
@@ -81,9 +96,11 @@ def build_forecast_features(
 # -----------------------------
 def build_stockout_features(
     df: pd.DataFrame,
-    target: str = "stockout_occurred",
+    target: str = "stockout_occurred"
 ) -> Tuple[pd.DataFrame, pd.Series]:
-    """Build features and target for stockout classification."""
+    """
+    Build features and target for stockout classification.
+    """
 
     if target not in df.columns:
         raise KeyError(f"Target column '{target}' not found in df")
@@ -103,6 +120,7 @@ def build_stockout_features(
     existing = [c for c in feature_cols if c in df.columns]
     X = df[existing].copy()
     X = encode_categoricals(X)
+
     y = df[target].astype(int)
 
     return X, y

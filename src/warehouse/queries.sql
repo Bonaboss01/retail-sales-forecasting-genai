@@ -1,0 +1,4 @@
+-- Example business query
+SELECT *
+FROM SUNNYBEST_ANALYTICS.MART_REVENUE_BY_CATEGORY
+ORDER BY total_revenue DESC;
