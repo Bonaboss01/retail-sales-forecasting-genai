@@ -179,6 +179,10 @@ Generative AI is used as an **explanation and decision-support layer**, not as a
 
 ## 📁 Project Structure
 
+The repository currently follows **Version 1**.  
+**Version 2** is included to illustrate how the system would evolve to support
+GenAI agents, orchestration, and production-scale workflows.
+
 ### Version 1
 
 ```text
