@@ -122,9 +122,23 @@ Open in your browser:
 | Stock-out classification | ✅ Implemented | Binary classifier |
 | Pricing analysis | ⚠️ Partial | Elasticity & optimisation notebooks |
 | GenAI RAG experiments | ⚠️ Experimental | Notebook-based exploration |
-| FastAPI backend | 🛠 Planned | API scaffold designed |
-| Dockerisation | 🛠 Planned | To containerise API & dashboard |
+| FastAPI backend | ✅ Implemented | API scaffold designed |
+| Dockerisation | ✅ Implemented | To containerise API & dashboard |
 | AWS deployment | 🛠 Planned | EC2 / S3 / future MLOps |
+
+---
+
+## 🤖 Generative AI (GenAI) Layer
+
+Generative AI is used as an **explanation and decision-support layer**, not as a replacement for statistical or machine learning models.
+
+### Current capabilities include:
+- Retrieval-Augmented Generation (RAG) over analytical outputs
+- Natural-language explanations of forecasts, pricing behaviour, and stock-out risks
+- Experimental insight summarisation for non-technical stakeholders
+
+> **Note:**  
+> Agent-based orchestration is intentionally included as a *planned extension* rather than a core dependency at the current stage of the project.
 
 ---
 
@@ -148,6 +162,18 @@ Open in your browser:
 - Retrieval-Augmented Generation (RAG)
 - Natural-language questions over retail data
 - LLM-based explanation prototypes (experimental)
+
+---
+
+## 🧭 Future Enhancements
+
+- Full integration between the Streamlit dashboard and the FastAPI backend
+- Automated model retraining pipelines and performance monitoring
+- Cloud deployment on AWS (e.g. EC2, S3, and managed services)
+- Richer Generative AI decision-support workflows
+- User-specific dashboards and access control mechanisms
+
+---
 
 ## 📁 Project Structure
 
