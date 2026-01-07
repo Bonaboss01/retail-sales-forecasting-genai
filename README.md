@@ -96,9 +96,9 @@ It is a **decision intelligence system** that demonstrates how analytics, ML, an
 
 ---
 ## 🚀 How to Run Locally
-
-### 1️⃣ Install dependencies
 ```bash
+### 1️⃣ Install dependencies
+
 pip install -r requirements.txt
 
 ### 2️⃣ Run the Streamlit dashboard
@@ -106,7 +106,6 @@ streamlit run src/dashboards/streamlit_app.py
 
 ### 3️⃣ Run the API (optional)
 python -m uvicorn src.api.app:app --reload
-
 Open in your browser:
 	•	API documentation (Swagger): http://localhost:8000/docs
 ```
