@@ -70,10 +70,15 @@ It is a **decision intelligence system** that demonstrates how analytics, ML, an
 
 ---
 
-### 📌 Notes
+## 📈 Key Findings (Summary)
 
-- All data used in this project is **synthetic** and created for demonstration purposes.  
-- The architecture reflects how such a system could evolve in a real production environment, while keeping the core models lightweight and interpretable.
+- Machine learning–based demand forecasting outperforms baseline statistical models across evaluation metrics.
+- Stock-out risk is highest in high-demand product categories and in smaller store formats.
+- Promotions increase demand but also significantly raise the likelihood of stock-outs if inventory is not proactively managed.
+- Demand for several categories appears relatively price-inelastic within the tested pricing ranges.
+- Uniform discounting strategies are sub-optimal; category-specific pricing approaches consistently perform better.
+
+
 
 
 ## 🚦 Implementation Status
