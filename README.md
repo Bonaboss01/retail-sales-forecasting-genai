@@ -6,7 +6,11 @@ An end-to-end **AI, Machine Learning, and Generative AI–driven retail analytic
 This project demonstrates how modern data science, forecasting, pricing analytics, and **Generative AI (RAG + LLMs)** can be combined into a single system to support **real-world retail decision-making**, rather than isolated models or dashboards.
 
 ---
-<img width="2296" height="904" alt="image" src="https://github.com/user-attachments/assets/ac0bcb46-691f-40ea-8cfa-366c787c2e08" />
+## 📸 System Snapshot
+
+![API Swagger Docs](assets/screenshots/swagger_docs.png)
+
+---
 
 ## 🎯 Project Aim
 
@@ -94,6 +98,8 @@ It is a **decision intelligence system** that demonstrates how analytics, ML, an
 4. Identify product categories and store locations with elevated stock-out risk.
 5. Analyse pricing behaviour and revenue sensitivity through simulation.
 6. *(Experimental)* Query the GenAI layer to generate natural-language explanations of analytical outputs.
+
+![
 
 ---
 ## 🚀 How to Run the System
