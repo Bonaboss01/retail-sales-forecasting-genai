@@ -128,6 +128,16 @@ docker compose down
 ```
 ---
 
+## 🚀 Quick Demo (One Command)
+
+To run the full system end-to-end using Docker:
+```bash
+./scripts/demo.sh
+
+```
+
+---
+
 ## 🚦 Implementation Status
 
 | Component | Status | Notes |
