@@ -10,6 +10,12 @@ This project demonstrates how modern data science, forecasting, pricing analytic
 
 ![API Swagger Docs](assets/screenshots/swagger_docs.png)
 
+### 📊 Streamlit Dashboard – Business Overview
+![Streamlit Overview](assets/screenshots/streamlit_overview.png)
+
+### 🤖 Prediction Flow – UI Calling API
+![Streamlit Predict](assets/screenshots/streamlit_predict.png)
+
 ---
 
 ## 🎯 Project Aim
