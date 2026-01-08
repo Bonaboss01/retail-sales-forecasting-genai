@@ -6,6 +6,7 @@ An end-to-end **AI, Machine Learning, and Generative AI–driven retail analytic
 This project demonstrates how modern data science, forecasting, pricing analytics, and **Generative AI (RAG + LLMs)** can be combined into a single system to support **real-world retail decision-making**, rather than isolated models or dashboards.
 
 ---
+<img width="2296" height="904" alt="image" src="https://github.com/user-attachments/assets/ac0bcb46-691f-40ea-8cfa-366c787c2e08" />
 
 ## 🎯 Project Aim
 
