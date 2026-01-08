@@ -17,3 +17,16 @@ __pycache__/
 + # Allow model artifacts
 + !models/
 + !models/*.pkl
+
+# OS
+.DS_Store
+
+# Environments & secrets
+.env
+.env.*
+.venv/
+venv/
+
+# MLflow
+mlruns/
+
