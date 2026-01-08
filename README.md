@@ -95,22 +95,38 @@ It is a **decision intelligence system** that demonstrates how analytics, ML, an
 6. *(Experimental)* Query the GenAI layer to generate natural-language explanations of analytical outputs.
 
 ---
-## 🚀 How to Run Locally
+## 🚀 How to Run the System
 
-### 1️⃣ Install dependencies
+This project can be run locally for fast development and debugging, or via Docker for full system orchestration.
+
+### 🔹 Option 1: Local Development (Recommended for iteration)
+Run the API and dashboard directly on your machine.  
+This is ideal for rapid development, debugging, and experimentation.
+
 ```bash
 pip install -r requirements.txt
-```
-### 2️⃣ Run the Streamlit dashboard
-```bash
+python -m uvicorn src.api.app:app --reload --port 8000
 streamlit run src/dashboards/streamlit_app.py
+
+- **API Docs (Swagger):** http://localhost:8000/docs  
+- **Dashboard:** http://localhost:8501  
 ```
-### 3️⃣ Run the API (optional)
+---
+
+### 🔹 Option 2: Docker (End-to-End System)
+
+Run the full system using Docker Compose.  
+This mirrors a production-style setup with isolated services and shared networking.
+
 ```bash
-python -m uvicorn src.api.app:app --reload
-Open in your browser:
-	•	API documentation (Swagger): http://localhost:8000/docs
+docker compose up --build
 ```
+Stop all services:
+
+```bash
+docker compose down
+
+---
 
 ## 🚦 Implementation Status
 
