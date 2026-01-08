@@ -125,7 +125,7 @@ Stop all services:
 
 ```bash
 docker compose down
-
+```
 ---
 
 ## 🚦 Implementation Status
