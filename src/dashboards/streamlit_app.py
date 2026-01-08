@@ -1,204 +1,216 @@
-# src/dashboards/streamlit_app.py
-# --------------------------------
-# SunnyBest Retail Intelligence Platform (Mode A)
-# - Streamlit loads data + models locally (no API calls)
-# - Clean project-root paths (works from anywhere)
-# - Useful business tabs: Overview, Forecast (baseline), Stockouts (observed), Pricing (observed)
-
+import os
+import requests
 import streamlit as st
 import pandas as pd
-import joblib
-from pathlib import Path
 
-# =========================
-# CONFIG / PATHS
-# =========================
+# -----------------------------
+# Config
+# -----------------------------
 st.set_page_config(page_title="SunnyBest Analytics Platform", layout="wide")
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]  # .../retail-sales-forecasting-genai
-DATA_PATH = PROJECT_ROOT / "data" / "raw" / "sunnybest_sales.csv"
-FORECAST_MODEL_PATH = PROJECT_ROOT / "models" / "xgb_revenue_forecast.pkl"
-STOCKOUT_MODEL_PATH = PROJECT_ROOT / "models" / "stockout_classifier.pkl"
+API_BASE_URL = os.getenv("API_BASE_URL", "http://127.0.0.1:8000")
 
-# =========================
-# UI HEADER
-# =========================
+
+# -----------------------------
+# Helpers
+# -----------------------------
+def api_get(path: str, params: dict | None = None):
+    url = f"{API_BASE_URL}{path}"
+    return requests.get(url, params=params, timeout=10)
+
+def api_post(path: str, json: dict):
+    url = f"{API_BASE_URL}{path}"
+    return requests.post(url, json=json, timeout=20)
+
+
+# -----------------------------
+# Header + API Health
+# -----------------------------
 st.title("📊 SunnyBest Retail Intelligence Platform")
-st.success("App loaded ✅")
 
-# =========================
-# LOAD DATA
-# =========================
-@st.cache_data
-def load_data(path: Path) -> pd.DataFrame:
-    df = pd.read_csv(path, parse_dates=["date"])
-    return df
+colA, colB = st.columns([2, 1])
+with colA:
+    st.write("Frontend (Streamlit) calling backend (FastAPI).")
+with colB:
+    st.caption(f"API_BASE_URL: `{API_BASE_URL}`")
 
-df = load_data(DATA_PATH)
+# Health check
+try:
+    r = api_get("/health")
+    if r.status_code == 200 and r.json().get("status") == "ok":
+        st.success("API connected ✅")
+    else:
+        st.warning(f"API reachable but health not OK: {r.status_code} | {r.text}")
+except Exception as e:
+    st.error(f"API not reachable: {e}")
+    st.stop()
 
-# =========================
-# LOAD MODELS (LOCAL)
-# =========================
-@st.cache_resource
-def load_model(path: Path):
-    return joblib.load(path)
 
-forecast_model = load_model(FORECAST_MODEL_PATH)
-stockout_model = load_model(STOCKOUT_MODEL_PATH)
-
-# =========================
-# SIDEBAR STATUS
-# =========================
-st.sidebar.header("System Status")
-st.sidebar.write("✅ Data path:", str(DATA_PATH))
-st.sidebar.write("✅ Data shape:", df.shape)
-st.sidebar.write("✅ Forecast model:", FORECAST_MODEL_PATH.name)
-st.sidebar.write("✅ Stockout model:", STOCKOUT_MODEL_PATH.name)
-
-# =========================
-# TABS
-# =========================
+# -----------------------------
+# Tabs
+# -----------------------------
 tab1, tab2, tab3, tab4 = st.tabs([
     "Overview",
-    "Revenue Forecast (Baseline)",
-    "Stockout Risk (Observed)",
-    "Pricing Explorer (Observed)"
+    "Predict (Revenue + Stockout)",
+    "Predict Example (From Data)",
+    "GenAI Ask (Copilot)"
 ])
 
-# =========================
-# TAB 1: OVERVIEW
-# =========================
+
+# -----------------------------
+# TAB 1: OVERVIEW (lightweight)
+# -----------------------------
 with tab1:
-    st.subheader("Business Overview")
+    st.subheader("Business Overview (API-ready)")
+    st.info(
+        "This tab can later call an API endpoint like /kpis or /timeseries. "
+        "For now, it's just confirming your full system wiring is working."
+    )
 
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Total Revenue (₦)", f"{df['revenue'].sum():,.0f}")
-    col2.metric("Total Units Sold", f"{df['units_sold'].sum():,.0f}")
-    col3.metric("Stockout Rate", f"{df['stockout_occurred'].mean() * 100:.2f}%")
+    st.markdown("""
+**What this system can do now:**
+- Predict revenue and stockout probability via `POST /predict`
+- Run a prediction from a real historical row via `GET /predict/example`
+- Answer questions via the experimental GenAI layer `POST /ask`
+""")
 
-    st.write("### Revenue Trend Over Time")
-    daily_rev = df.groupby("date")["revenue"].sum().sort_index()
-    st.line_chart(daily_rev)
 
-    st.write("### Top Categories by Revenue")
-    cat_rev = df.groupby("category")["revenue"].sum().sort_values(ascending=False).head(10)
-    st.dataframe(cat_rev.reset_index().rename(columns={"revenue": "total_revenue"}))
-
-# =========================
-# TAB 2: FORECAST (BASELINE)
-# =========================
+# -----------------------------
+# TAB 2: PREDICT (POST /predict)
+# -----------------------------
 with tab2:
-    st.subheader("Revenue Forecast (Baseline)")
-    st.info(
-        "This Mode A dashboard uses a baseline forecast to avoid feature-mismatch issues. "
-        "Model-based forecasting via the API will be added during polish."
-    )
+    st.subheader("Revenue Forecast + Stockout Probability")
+    st.caption("Calls: `POST /predict`")
 
-    daily = df.groupby("date")["revenue"].sum().reset_index().sort_values("date")
-    st.write("### Historical Revenue")
-    st.line_chart(daily.set_index("date")["revenue"])
+    with st.form("predict_form"):
+        c1, c2, c3 = st.columns(3)
 
-    horizon = st.slider("Forecast horizon (days)", 7, 90, 30)
+        with c1:
+            price = st.number_input("Price (₦)", min_value=0.0, value=250000.0, step=1000.0)
+            regular_price = st.number_input("Regular Price (₦)", min_value=0.0, value=300000.0, step=1000.0)
+            discount_pct = st.number_input("Discount %", min_value=0.0, max_value=100.0, value=15.0, step=1.0)
+            promo_flag = st.selectbox("Promo Flag", [0, 1], index=1)
 
-    # Naive baseline: mean of last 30 days
-    window = st.slider("Baseline window (days)", 7, 90, 30)
-    last_mean = daily.tail(window)["revenue"].mean()
+        with c2:
+            month = st.slider("Month", 1, 12, 12)
+            is_weekend = st.selectbox("Is Weekend?", [0, 1], index=1)
+            is_holiday = st.selectbox("Is Holiday?", [0, 1], index=0)
+            is_payday = st.selectbox("Is Payday?", [0, 1], index=1)
 
-    future_dates = pd.date_range(daily["date"].max() + pd.Timedelta(days=1), periods=horizon, freq="D")
-    forecast = pd.DataFrame({"date": future_dates, "forecast_revenue": last_mean})
+        with c3:
+            category = st.text_input("Category", value="Mobile Phones")
+            store_size = st.selectbox("Store Size", ["Small", "Medium", "Large"], index=2)
+            temperature_c = st.number_input("Temperature (°C)", value=29.5, step=0.1)
+            rainfall_mm = st.number_input("Rainfall (mm)", value=2.0, step=0.1)
+            starting_inventory = st.number_input("Starting Inventory", min_value=0, value=12, step=1)
 
-    st.write("### Baseline Forecast (Last-window Mean)")
-    st.line_chart(forecast.set_index("date")["forecast_revenue"])
+        submitted = st.form_submit_button("Run Prediction")
 
-    st.caption(
-        "Note: Your trained XGBoost model is loaded successfully. "
-        "We’ll wire full feature generation + model predictions into this tab during polish."
-    )
+    if submitted:
+        payload = {
+            "price": float(price),
+            "regular_price": float(regular_price),
+            "discount_pct": float(discount_pct),
+            "promo_flag": int(promo_flag),
+            "month": int(month),
+            "is_weekend": int(is_weekend),
+            "is_holiday": int(is_holiday),
+            "is_payday": int(is_payday),
+            "category": category,
+            "store_size": store_size,
+            "temperature_c": float(temperature_c),
+            "rainfall_mm": float(rainfall_mm),
+            "starting_inventory": int(starting_inventory),
+        }
 
-# =========================
-# TAB 3: STOCKOUT (OBSERVED)
-# =========================
+        st.code(payload, language="json")
+
+        try:
+            res = api_post("/predict", payload)
+            if res.status_code == 200:
+                out = res.json()
+                m1, m2 = st.columns(2)
+                m1.metric("Predicted Revenue (₦)", f"{out['predicted_revenue']:,.2f}")
+                m2.metric("Stockout Probability", f"{out['stockout_probability']:.3f}")
+                st.success("Prediction successful ✅")
+            else:
+                st.error(f"API error {res.status_code}: {res.text}")
+        except Exception as e:
+            st.error(f"Request failed: {e}")
+
+
+# -----------------------------
+# TAB 3: PREDICT EXAMPLE (GET /predict/example)
+# -----------------------------
 with tab3:
-    st.subheader("Stockout Risk (Observed Patterns)")
-    st.info(
-        "This tab shows real stockout patterns from the dataset. "
-        "Model-based predictions will be added in the polish phase."
-    )
+    st.subheader("Predict Using a Real Historical Row")
+    st.caption("Calls: `GET /predict/example`")
 
-    # Stockout rate by category
-    st.write("### Stockout Rate by Category")
-    by_cat = (
-        df.groupby("category")["stockout_occurred"]
-        .mean()
-        .sort_values(ascending=False)
-        .mul(100)
-        .round(2)
-        .reset_index(name="stockout_%")
-    )
-    st.dataframe(by_cat, use_container_width=True)
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        date = st.text_input("date (YYYY-MM-DD) optional", value="")
+    with c2:
+        store_id = st.text_input("store_id optional", value="")
+    with c3:
+        product_id = st.text_input("product_id optional", value="")
 
-    # Stockout rate by store
-    if "store_name" in df.columns:
-        st.write("### Stockout Rate by Store")
-        by_store = (
-            df.groupby("store_name")["stockout_occurred"]
-            .mean()
-            .sort_values(ascending=False)
-            .mul(100)
-            .round(2)
-            .reset_index(name="stockout_%")
-        )
-        st.dataframe(by_store, use_container_width=True)
+    params = {}
+    if date.strip():
+        params["date"] = date.strip()
+    if store_id.strip():
+        params["store_id"] = int(store_id.strip())
+    if product_id.strip():
+        params["product_id"] = int(product_id.strip())
 
-    # Simple filters
-    st.write("### Filter and Inspect High-Risk Rows")
-    cat = st.selectbox("Category", ["All"] + sorted(df["category"].dropna().unique().tolist()))
-    store = st.selectbox(
-        "Store",
-        ["All"] + (sorted(df["store_name"].dropna().unique().tolist()) if "store_name" in df.columns else [])
-    )
+    if st.button("Run Example Prediction"):
+        try:
+            res = api_get("/predict/example", params=params if params else None)
+            if res.status_code == 200:
+                out = res.json()
+                st.success("Example prediction returned ✅")
+                st.json(out)
+            else:
+                st.error(f"API error {res.status_code}: {res.text}")
+        except Exception as e:
+            st.error(f"Request failed: {e}")
 
-    filtered = df.copy()
-    if cat != "All":
-        filtered = filtered[filtered["category"] == cat]
-    if store != "All" and "store_name" in filtered.columns:
-        filtered = filtered[filtered["store_name"] == store]
 
-    high_risk = filtered.sort_values("stockout_occurred", ascending=False).head(200)
-    st.dataframe(high_risk, use_container_width=True)
-
-# =========================
-# TAB 4: PRICING (OBSERVED)
-# =========================
+# -----------------------------
+# TAB 4: GENAI ASK (POST /ask)
+# -----------------------------
 with tab4:
-    st.subheader("Pricing Explorer (Observed Data)")
-    st.info(
-        "This tab explores how revenue behaves across observed price points. "
-        "Pricing optimisation + elasticity models are in notebooks and will be integrated during polish."
-    )
+    st.subheader("GenAI Copilot (Experimental)")
+    st.caption("Calls: `POST /ask`")
 
-    categories = sorted(df["category"].dropna().unique().tolist())
-    cat = st.selectbox("Select category", categories)
+    query = st.text_input("Ask a question", value="Summarise stockout drivers and what SunnyBest should do.")
+    attach_payload = st.checkbox("Attach the same payload used in /predict? (optional)", value=False)
 
-    temp = df[df["category"] == cat].copy()
-    temp = temp.dropna(subset=["price", "revenue"])
+    st.info("This is your early GenAI layer: RAG-like retrieval over DOCS + a router tool (run_copilot).")
 
-    st.write("### Revenue vs Price (Sample)")
-    n = min(3000, len(temp))
-    if n > 0:
-        sample = temp[["price", "revenue"]].sample(n=n, random_state=42)
-        st.scatter_chart(sample, x="price", y="revenue")
-    else:
-        st.warning("No rows available for this category.")
+    if st.button("Ask Copilot"):
+        req = {"query": query}
+        if attach_payload:
+            # reuse a minimal payload example if user didn't run predict
+            req["payload"] = {
+                "category": "Mobile Phones",
+                "store_size": "Large",
+                "month": 12,
+                "promo_flag": 1,
+                "discount_pct": 15,
+                "starting_inventory": 12,
+            }
 
-    st.write("### Price Summary")
-    st.dataframe(
-        temp["price"].describe().round(2).to_frame(name="price_stats"),
-        use_container_width=True
-    )
-
-    st.write("### Revenue Summary")
-    st.dataframe(
-        temp["revenue"].describe().round(2).to_frame(name="revenue_stats"),
-        use_container_width=True
-    )
+        try:
+            res = api_post("/ask", req)
+            if res.status_code == 200:
+                out = res.json()
+                st.success("Copilot response ✅")
+                # If run_copilot returns a string:
+                if isinstance(out, str):
+                    st.write(out)
+                else:
+                    st.json(out)
+            else:
+                st.error(f"API error {res.status_code}: {res.text}")
+        except Exception as e:
+            st.error(f"Request failed: {e}")
