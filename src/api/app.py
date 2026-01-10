@@ -17,6 +17,10 @@ from pydantic import BaseModel, Field
 from src.models.predict import predict_from_row, predict_example_from_existing_data
 
 from src.genai.copilot import run_copilot
+import os
+import pandas as pd
+from typing import List
+
 
 
 app = FastAPI(
@@ -67,6 +71,24 @@ def health() -> Dict[str, Any]:
     return {"status": "ok"}
 
 
+
+# Pricing Intelligence
+@app.get("/pricing/elasticity")
+def get_elasticity(category: Optional[str] = None):
+    """
+    GET /pricing/elasticity
+    GET /pricing/elasticity?category=Mobile%20Phones
+    """
+    df = ELASTICITY_TABLE.copy()
+    if df.empty:
+        return {"items": [], "note": "Elasticity table not found. Build artifact first."}
+
+    if category:
+        df = df[df["category"] == category]
+
+    return {"items": df.to_dict(orient="records")}
+
+
 @app.post("/predict", response_model=PredictResponse)
 def predict(req: PredictRequest) -> PredictResponse:
     payload = req.model_dump()
@@ -89,6 +111,15 @@ def predict_example(
     """
     return predict_example_from_existing_data(date=date, store_id=store_id, product_id=product_id)
 
+# load elasticity table (pricing intelligence)
+ELASTICITY_PATH = os.getenv("ELASTICITY_PATH", "data/processed/elasticity_by_category.csv")
+
+def load_elasticity_table() -> pd.DataFrame:
+    if os.path.exists(ELASTICITY_PATH):
+        return pd.read_csv(ELASTICITY_PATH)
+    return pd.DataFrame(columns=["category", "price_elasticity"])
+
+ELASTICITY_TABLE = load_elasticity_table()
 
 # minimal docs store (later we load from files)
 DOCS: List[dict] = [
