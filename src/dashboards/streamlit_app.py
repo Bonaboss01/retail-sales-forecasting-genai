@@ -11,6 +11,7 @@ st.set_page_config(page_title="SunnyBest Analytics Platform", layout="wide")
 API_BASE_URL = os.getenv("API_BASE_URL", "http://127.0.0.1:8000")
 
 
+
 # -----------------------------
 # Helpers
 # -----------------------------
@@ -49,12 +50,14 @@ except Exception as e:
 # -----------------------------
 # Tabs
 # -----------------------------
-tab1, tab2, tab3, tab4 = st.tabs([
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "Overview",
     "Predict (Revenue + Stockout)",
     "Predict Example (From Data)",
-    "GenAI Ask (Copilot)"
+    "GenAI Ask (Copilot)",
+    "Pricing Elasticity"
 ])
+
 
 
 # -----------------------------
@@ -64,7 +67,7 @@ with tab1:
     st.subheader("Business Overview (API-ready)")
     st.info(
         "This tab can later call an API endpoint like /kpis or /timeseries. "
-        "For now, it's just confirming your full system wiring is working."
+        "For now, it's just confirming my full system wiring is working."
     )
 
     st.markdown("""
@@ -214,3 +217,30 @@ with tab4:
                 st.error(f"API error {res.status_code}: {res.text}")
         except Exception as e:
             st.error(f"Request failed: {e}")
+
+
+# -------------------------
+# TAB 5: PRICING ELASTICITY
+# -------------------------
+with tab5:
+    st.subheader("📈 Price Elasticity by Category")
+
+    st.info(
+        "This section shows estimated price elasticity by product category. "
+        "Elasticity is computed offline and served via the API."
+    )
+
+    try:
+        response = api_get("/pricing/elasticity")
+        response.raise_for_status()
+        data = response.json().get("items", [])
+
+        if not data:
+            st.warning("Elasticity table is empty. Build the artifact first.")
+        else:
+            elasticity_df = pd.DataFrame(data)
+            st.dataframe(elasticity_df, use_container_width=True)
+
+    except Exception as e:
+        st.error("Failed to fetch elasticity data from API")
+        st.exception(e)
