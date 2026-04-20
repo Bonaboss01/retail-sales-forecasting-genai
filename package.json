@@ -1,0 +1,28 @@
+{
+  "name": "retail-sales-forecasting-genai",
+  "version": "1.0.0",
+  "description": "An end-to-end **AI, Machine Learning, and Generative AI–driven forecasting system** built for a telecom and consumer electronics retailer.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bonaboss01/retail-sales-forecasting-genai.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Bonaboss01/retail-sales-forecasting-genai/issues"
+  },
+  "homepage": "https://github.com/Bonaboss01/retail-sales-forecasting-genai#readme",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.90.0"
+  }
+}
