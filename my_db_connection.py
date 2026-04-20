@@ -2,11 +2,11 @@ import pandas as pd
 from sqlalchemy import create_engine
 from urllib.parse import quote_plus
 
-host = "YOUR_HOST"
+host = "YOUR_HOST" # add host
 port = 5432
-database = "postgres"
-user = "postgres"
-password = quote_plus("YOUR_PASSWORD")
+database = "postgres" 
+user = "postgres"   # add user
+password = quote_plus("YOUR_PASSWORD")  # add password
 
 engine = create_engine(
     f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}",
@@ -15,3 +15,22 @@ engine = create_engine(
 
 df = pd.read_sql("SELECT * FROM core.fact_customer_activity LIMIT 5", engine)
 print(df.head())
+
+
+# host = "aws-1-eu-central-1.pooler.supabase.com"
+# user = "postgres.ogkdfmkybqtrsglcizzt"
+# password = "Bonabosssfs01"
+
+# Table names "Core"
+
+# dim_calendar
+# dim_policies
+# dim_products
+# dim_stores
+# fact_customer_activity
+# fact_inventory
+# fact_promotions
+# fact_restrictions_events
+# fact_sales
+# fact_store_operations
+# fact_weather
