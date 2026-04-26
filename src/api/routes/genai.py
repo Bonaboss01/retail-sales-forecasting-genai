@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from src.genai.openai_client import create_response, response_text
 from src.genai.prompts import SYSTEM_RULES
 from src.genai.rag.retrieve import retrieve
-from src.genai.tooling.forecast_tools import tool_specs, run_revenue_forecast
+from src.genai.tools.forecast_tools import tool_specs, run_revenue_forecast
 
 router = APIRouter(prefix="/genai", tags=["genai"])
 
