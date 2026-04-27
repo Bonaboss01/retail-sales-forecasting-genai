@@ -23,7 +23,14 @@ files = {
 for table_name, file_path in files.items():
     print(f"Uploading {file_path} -> core.{table_name}")
 
-    df = pd.read_csv(file_path)
+    df = pd.read_csv(file_path, low_memory=False)
+    print(f"{table_name}: {len(df):,} rows")
+
+    if table_name == "fact_sales" and len(df) < 1_600_000:
+        raise ValueError(
+            f"❌ Upload blocked: core.fact_sales has only {len(df):,} rows. "
+            "Expected around 1.6M + rows of Sales . Upload stopped to prevent data loss."
+        )
 
     df.to_sql(
         name=table_name,

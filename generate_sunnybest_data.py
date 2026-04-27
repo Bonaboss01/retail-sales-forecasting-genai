@@ -1103,6 +1103,16 @@ def generate_store_operations(
 
 def main():
     prior_state = load_generator_state()
+
+    sales_path = get_dataset_path(OUTPUT_DIR, "sunnybest_sales", SAVE_FORMAT)
+
+    if prior_state is not None and not sales_path.exists():
+        raise FileNotFoundError(
+            "❌ Generator state exists, but sunnybest_sales file is missing. "
+            "This means state and CSV data are out of sync. "
+            "Delete the state file and rebuild from 2021, or restore the full CSV."
+        )
+
     initialize_rng(prior_state)
 
     last_generated_date, forward_start, forward_end = get_effective_forward_window(
