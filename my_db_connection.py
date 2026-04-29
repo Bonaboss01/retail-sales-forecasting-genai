@@ -5,7 +5,7 @@ from urllib.parse import quote_plus
 host = "YOUR_HOST" # add host
 port = 5432
 database = "postgres" 
-user = "postgres"   # add user
+user = "postgres.ogkdfmkybqtrsglcizzt"   # add user
 password = quote_plus("YOUR_PASSWORD")  # add password
 
 engine = create_engine(
