@@ -34,6 +34,9 @@ def run_query(query: str, params: dict | None = None) -> pd.DataFrame:
         return pd.read_sql(text(query), conn, params=params)
 
 
-def run_table(table_name: str) -> pd.DataFrame:
-    """Load an entire core schema table into a DataFrame."""
-    return run_query(f"SELECT * FROM core.{table_name}")
+def run_table(table_name: str, limit: int | None = None) -> pd.DataFrame:
+    """Load a core schema table into a DataFrame. Pass limit for quick sampling."""
+    query = f"SELECT * FROM core.{table_name}"
+    if limit:
+        query += f" LIMIT {limit}"
+    return run_query(query)
