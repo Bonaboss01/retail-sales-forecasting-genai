@@ -6,6 +6,7 @@ Usage:
     from src.data.queries import fetch_sales_with_context
 """
 
+import pandas as pd
 from src.data.db_connection import run_query
 
 
