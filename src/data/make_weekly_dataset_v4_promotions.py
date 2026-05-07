@@ -21,11 +21,13 @@ warnings.filterwarnings("ignore")
 def load_sales() -> pd.DataFrame:
     return run_query("""
         SELECT
-            date, store_id, product_id,
-            units_sold, price, regular_price, discount_pct,
-            promo_flag, starting_inventory, season
-        FROM core.fact_sales
-        ORDER BY date ASC
+            s.date, s.store_id, s.product_id,
+            s.units_sold, s.price, s.regular_price, s.discount_pct,
+            s.promo_flag, s.starting_inventory,
+            c.season
+        FROM core.fact_sales s
+        LEFT JOIN core.dim_calendar c ON s.date = c.date
+        ORDER BY s.date ASC
     """)
 
 
