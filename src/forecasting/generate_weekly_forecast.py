@@ -1,4 +1,11 @@
 # generate_weekly_forecast.py
+#
+# Generates a one-week-ahead forecast using the current best model.
+# Loads data from Supabase — no CSV files needed.
+# Best model is read automatically from model_registry.csv.
+#
+# Usage:
+#   PYTHONPATH=. python src/forecasting/generate_weekly_forecast.py
 
 import os
 import warnings
@@ -6,239 +13,166 @@ import warnings
 import joblib
 import pandas as pd
 
+from src.data.make_weekly_dataset_v4_promotions import build_weekly_v4
+
 warnings.filterwarnings("ignore")
 
 
-# -----------------------------
-# Config
-# -----------------------------
-DATA_PATH = "data/processed/weekly_sales_v4_promotions.csv"
-FORECAST_PATH = "data/outputs/weekly_forecasts.csv"
-
-# Choose your current best model here
-BEST_MODEL_PATH = "models/weekly_model_v4_promotions.pkl"
-MODEL_VERSION = "weekly_model_v4_promotions"
-
-TARGET = "units_sold"
+# ── Config ────────────────────────────────────────────────
+REGISTRY_PATH  = "models/model_registry.csv"
+FORECAST_PATH  = "data/outputs/weekly_forecasts.csv"
+TARGET         = "units_sold"
 
 
-# -----------------------------
-# Load data
-# -----------------------------
-def load_data(path: str) -> pd.DataFrame:
-    return pd.read_csv(path)
+# ── Load best model from registry ────────────────────────
+
+def load_best_model():
+    if not os.path.exists(REGISTRY_PATH):
+        raise FileNotFoundError(f"Registry not found: {REGISTRY_PATH}")
+
+    registry = pd.read_csv(REGISTRY_PATH, comment="#")
+    best = registry[registry["status"] == "best"]
+
+    if best.empty:
+        raise ValueError("No model marked as 'best' in model_registry.csv.")
+
+    model_version = best.iloc[0]["model_version"]
+    model_path    = best.iloc[0]["model_path"]
+
+    if not os.path.exists(model_path):
+        raise FileNotFoundError(f"Model file not found: {model_path}")
+
+    print(f"Best model : {model_version}")
+    print(f"Model path : {model_path}")
+
+    return joblib.load(model_path), model_version
 
 
-def load_model(path: str):
-    return joblib.load(path)
+# ── Feature engineering ───────────────────────────────────
 
-
-# -----------------------------
-# Prepare data
-# -----------------------------
-def prepare_data(df: pd.DataFrame) -> pd.DataFrame:
-    df = df.copy()
-
-    df["week_start"] = pd.to_datetime(df["week_start"], errors="coerce")
-    df[TARGET] = pd.to_numeric(df[TARGET], errors="coerce")
-
-    df["store_id"] = df["store_id"].astype(str)
-    df["product_id"] = pd.to_numeric(df["product_id"], errors="coerce").astype("Int64")
-
-    df = df.dropna(subset=["week_start", "store_id", "product_id", TARGET])
-    df["product_id"] = df["product_id"].astype(int)
-    df = df[df[TARGET] >= 0].copy()
-
-    numeric_cols = [
-        "avg_price",
-        "avg_regular_price",
-        "avg_discount_pct",
-        "promo_intensity",
-        "avg_starting_inventory",
-        "holiday_days_in_week",
-        "payday_days_in_week",
-        "weekend_days_in_week",
-        "black_friday_week",
-        "month",
-        "month_calendar",
-        "promo_days_in_week",
-        "avg_weekly_discount_pct",
-        "has_promo_week",
-        "week",
-        "year",
-        "quarter",
-        "week_of_year",
-    ]
-
-    for col in numeric_cols:
-        if col in df.columns:
-            df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
-
-    if "season" in df.columns:
-        df["season"] = df["season"].fillna("unknown")
-
-    promo_type_cols = [c for c in df.columns if c.startswith("promo_type_")]
-    for col in promo_type_cols:
-        df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
-
-    return df
-
-
-# -----------------------------
-# Feature engineering
-# -----------------------------
-def create_features(df: pd.DataFrame) -> pd.DataFrame:
+def create_lag_features(df: pd.DataFrame) -> pd.DataFrame:
     df = df.sort_values(["store_id", "product_id", "week_start"]).copy()
-
-    group_cols = ["store_id", "product_id"]
-
-    df["lag_1"] = df.groupby(group_cols)[TARGET].shift(1)
-    df["lag_4"] = df.groupby(group_cols)[TARGET].shift(4)
-
-    df["rolling_mean_4"] = (
-        df.groupby(group_cols)[TARGET]
-        .shift(1)
-        .rolling(4)
-        .mean()
-    )
-
+    group = ["store_id", "product_id"]
+    df["lag_1"]          = df.groupby(group)[TARGET].shift(1)
+    df["lag_4"]          = df.groupby(group)[TARGET].shift(4)
+    df["rolling_mean_4"] = df.groupby(group)[TARGET].shift(1).rolling(4).mean()
     return df
 
 
-# -----------------------------
-# Build next-week rows
-# -----------------------------
+# ── Build next-week feature rows ──────────────────────────
+
 def build_future_rows(df: pd.DataFrame) -> pd.DataFrame:
     df = df.sort_values(["store_id", "product_id", "week_start"]).copy()
 
     last_date = df["week_start"].max()
     next_week = last_date + pd.Timedelta(days=7)
 
-    print(f"Last available week: {last_date}")
-    print(f"Forecasting next week: {next_week}")
+    print(f"Last data week  : {last_date.date()}")
+    print(f"Forecasting week: {next_week.date()}")
 
-    latest = df.groupby(["store_id", "product_id"], as_index=False).last()
+    # Take the last known state per store × product
+    future = df.groupby(["store_id", "product_id"], as_index=False).last().copy()
+    future["week_start"]   = next_week
+    future["year"]         = next_week.year
+    future["week"]         = int(next_week.isocalendar().week)
+    future["week_of_year"] = int(next_week.isocalendar().week)
+    future["month"]        = next_week.month
+    future["quarter"]      = (next_week.month - 1) // 3 + 1
 
-    future = latest.copy()
-    future["week_start"] = next_week
-    future["year"] = next_week.year
-    future["week"] = int(next_week.isocalendar().week)
+    # Assume no promotion for next week (can be overridden externally)
+    for col in ["promo_days_in_week", "avg_weekly_discount_pct", "has_promo_week"]:
+        if col in future.columns:
+            future[col] = 0
 
-    # Basic future assumptions
-    # You can improve these later with planned promo / price inputs
-    if "promo_days_in_week" in future.columns:
-        future["promo_days_in_week"] = 0
-    if "avg_weekly_discount_pct" in future.columns:
-        future["avg_weekly_discount_pct"] = 0
-    if "has_promo_week" in future.columns:
-        future["has_promo_week"] = 0
-
-    promo_type_cols = [c for c in future.columns if c.startswith("promo_type_")]
-    for col in promo_type_cols:
+    for col in [c for c in future.columns if c.startswith("promo_type_")]:
         future[col] = 0
 
-    # Keep only rows with enough history
+    # Drop rows without sufficient lag history
     future = future.dropna(subset=["lag_1", "lag_4", "rolling_mean_4"]).copy()
-
     return future
 
 
-# -----------------------------
-# Encode + align to model
-# -----------------------------
+# ── Encode and align to model features ───────────────────
+
 def encode_and_align(future: pd.DataFrame, model) -> pd.DataFrame:
-    future_encoded = pd.get_dummies(
-        future,
-        columns=["season", "store_id", "product_id"],
-        drop_first=True
-    )
+    cat_cols = [c for c in ["season", "store_id", "product_id"] if c in future.columns]
+    encoded  = pd.get_dummies(future, columns=cat_cols, drop_first=True)
 
     model_features = model.feature_names_in_
 
+    # Add any missing columns as 0
     for col in model_features:
-        if col not in future_encoded.columns:
-            future_encoded[col] = 0
+        if col not in encoded.columns:
+            encoded[col] = 0
 
-    future_encoded = future_encoded[model_features].copy()
+    encoded = encoded[model_features].copy()
 
-    for col in future_encoded.columns:
-        if future_encoded[col].dtype == "bool":
-            future_encoded[col] = future_encoded[col].astype(int)
-        elif future_encoded[col].dtype == "object":
-            future_encoded[col] = pd.to_numeric(
-                future_encoded[col], errors="coerce"
-            ).fillna(0)
+    # Coerce types
+    for col in encoded.columns:
+        if encoded[col].dtype == "bool":
+            encoded[col] = encoded[col].astype(int)
+        elif encoded[col].dtype == "object":
+            encoded[col] = pd.to_numeric(encoded[col], errors="coerce").fillna(0)
 
-    return future_encoded
+    return encoded
 
 
-# -----------------------------
-# Save forecast
-# -----------------------------
+# ── Save forecast (append, deduplicate) ───────────────────
+
 def save_forecast(df: pd.DataFrame, path: str) -> None:
     os.makedirs(os.path.dirname(path), exist_ok=True)
 
     if os.path.exists(path):
         old = pd.read_csv(path)
-
-        if "week_start" in old.columns:
-            old["week_start"] = pd.to_datetime(old["week_start"], errors="coerce")
-        if "forecast_created_at" in old.columns:
-            old["forecast_created_at"] = pd.to_datetime(
-                old["forecast_created_at"], errors="coerce"
-            )
-
+        old["week_start"] = pd.to_datetime(old["week_start"], errors="coerce")
         df = pd.concat([old, df], ignore_index=True)
-
         df = df.drop_duplicates(
             subset=["week_start", "store_id", "product_id", "model_version"],
             keep="last"
         )
 
     df.to_csv(path, index=False)
-    print(f"\nForecast saved to: {path}")
+    print(f"Forecast saved : {path}  ({len(df):,} total rows)")
 
 
-# -----------------------------
-# Main
-# -----------------------------
+# ── Main ──────────────────────────────────────────────────
+
 def main() -> None:
-    print("Loading latest processed dataset...")
-    df = load_data(DATA_PATH)
+    print("Loading best model from registry...")
+    model, model_version = load_best_model()
 
-    print("Preparing data...")
-    df = prepare_data(df)
+    print("\nLoading weekly dataset from Supabase...")
+    df = build_weekly_v4()
 
-    print("Creating lag features...")
-    df = create_features(df)
+    df["week_start"] = pd.to_datetime(df["week_start"])
+    df["store_id"]   = df["store_id"].astype(str)
+    df["product_id"] = pd.to_numeric(df["product_id"], errors="coerce").astype(int)
+    df[TARGET]       = pd.to_numeric(df[TARGET], errors="coerce").fillna(0)
+    df               = df[df[TARGET] >= 0].copy()
 
-    print("Loading best model...")
-    model = load_model(BEST_MODEL_PATH)
+    print("\nComputing lag features...")
+    df = create_lag_features(df)
 
-    print("Building future rows...")
+    print("\nBuilding next-week rows...")
     future = build_future_rows(df)
 
-    print("Encoding and aligning features...")
+    print("\nEncoding and aligning to model features...")
     X_future = encode_and_align(future, model)
 
     print("Generating predictions...")
-    future["predicted_units"] = model.predict(X_future)
+    future["predicted_units"] = model.predict(X_future).round(2)
 
-    forecast_output = future[[
-        "week_start",
-        "store_id",
-        "product_id",
-        "predicted_units"
-    ]].copy()
-
+    forecast_output = future[["week_start", "store_id", "product_id", "predicted_units"]].copy()
     forecast_output["forecast_created_at"] = pd.Timestamp.today().normalize()
-    forecast_output["model_version"] = MODEL_VERSION
+    forecast_output["model_version"]       = model_version
 
-    print("\nForecast preview:")
-    print(forecast_output.head())
+    print(f"\nForecast rows: {len(forecast_output):,}")
+    print(forecast_output.head(10).to_string(index=False))
 
     print("\nSaving forecast...")
     save_forecast(forecast_output, FORECAST_PATH)
+
+    print("\nDone.")
 
 
 if __name__ == "__main__":
