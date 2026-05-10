@@ -1,7 +1,7 @@
 # generate_weekly_forecast.py
 #
 # Generates a one-week-ahead forecast using the current best model.
-# Loads data from Supabase — no CSV files needed.
+# Loads data from Supabase.
 # Best model is read automatically from model_registry.csv.
 #
 # Usage:
@@ -13,7 +13,7 @@ import warnings
 import joblib
 import pandas as pd
 
-from src.data.make_weekly_dataset_v4_promotions import build_weekly_v4
+from src.data.make_weekly_dataset_v4_promotions import build_weekly_base
 
 warnings.filterwarnings("ignore")
 
@@ -142,7 +142,7 @@ def main() -> None:
     model, model_version = load_best_model()
 
     print("\nLoading weekly dataset from Supabase...")
-    df = build_weekly_v4()
+    df = build_weekly_base()
 
     df["week_start"] = pd.to_datetime(df["week_start"])
     df["store_id"]   = df["store_id"].astype(str)

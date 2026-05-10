@@ -7,7 +7,7 @@
 #   python src/data/make_weekly_dataset_v4_promotions.py
 #
 # Usage (from train script):
-#   from src.data.make_weekly_dataset_v4_promotions import build_weekly_v4
+#   from src.data.make_weekly_dataset_v4_promotions import build_weekly_base
 
 import warnings
 import pandas as pd
@@ -152,7 +152,7 @@ def merge_datasets(weekly: pd.DataFrame, promo_weekly: pd.DataFrame) -> pd.DataF
 
 # ── Public entry point ────────────────────────────────────
 
-def build_weekly_v4() -> pd.DataFrame:
+def build_weekly_base() -> pd.DataFrame:
     """
     Pull data from Supabase and return the v4 weekly training DataFrame.
     No CSV files written anywhere.
@@ -179,6 +179,6 @@ def build_weekly_v4() -> pd.DataFrame:
 # ── Standalone run ────────────────────────────────────────
 
 if __name__ == "__main__":
-    df = build_weekly_v4()
+    df = build_weekly_base()
     print(df.head())
     print(df.dtypes)
