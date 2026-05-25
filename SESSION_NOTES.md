@@ -3,24 +3,36 @@
 
 ---
 
-## 2026-05-25
+## 2026-05-25 (STOPPED HERE — resume from this point)
 
 ### What I worked on
-- Created `16_demand_sensing.ipynb` — demand sensing notebook
-- Created `17_inventory_optimisation.ipynb` — inventory optimisation notebook
-- Reviewed forecast pipeline and `weekly_forecasts.csv`
+- Reviewed the full forecast pipeline end-to-end
+- Understood how `generate_weekly_forecast.py` works — picks the "best" model from `model_registry.csv` and forecasts 1 week ahead
+- Understood why two model versions exist in `weekly_forecasts.csv` — registry changed between March and May runs
+- Understood the difference between notebook 14 (was the model right?) and notebook 15 (what is it predicting?)
+- Understood why `read_sql` is used in notebook 15 — to enrich forecast IDs with store/product names from Supabase
+- Inspected `weekly_model_monitoring.csv` and `weekly_monitoring_summary.csv`
 
-### Key findings
-- Forecast file (`data/outputs/weekly_forecasts.csv`) has 3 weeks: 2026-03-30, 2026-05-04, 2026-05-11
-- All 3 are now in the past — actuals can be uploaded and monitoring run
-- Current best model: `weekly_model_v3_calendar` (WAPE 0.1500). Note: v4_promotions was used for the March forecast but is now archived (worse WAPE: 0.1655)
-- `15_weekly_forecast_analysis.ipynb` has a potential issue — needs investigation
+### Key findings / decisions
+- `weekly_forecasts.csv` has 3 forecast weeks: 2026-03-30, 2026-05-04, 2026-05-11 (all now in the past)
+- **CRITICAL: March 2026-03-30 WAPE = 1.358 (135%) — flagged "Check Model"** — model errors are larger than actual sales. This must be investigated before generating new forecasts.
+- May 4 actuals are missing (`actual_sum = 0`) — actuals were never uploaded for that week
+- May 11 is not in the monitoring file at all — also missing actuals
+- Current best model: `weekly_model_v3_calendar` (WAPE 0.15 on validation). v4_promotions archived (worse WAPE 0.1655)
+- Notebooks 16 (`demand_sensing`) and 17 (`inventory_optimisation`) were recently created — outputs not yet reviewed
 
-### Left off at / To pick up next
-- Review outputs of notebooks 16 and 17
-- Investigate issue in `15_weekly_forecast_analysis.ipynb`
-- Generate forecast for week of 2026-05-19 and 2026-05-26
-- Run `14_model_monitoring.ipynb` against all 3 past forecast weeks
+### EXACT NEXT STEPS (in order)
+
+1. **Investigate March WAPE** — open `14_model_monitoring.ipynb`, look at which stores/products had the worst errors. Is it a data problem (actuals loaded wrong) or a genuine model failure?
+2. **Upload actuals for May 4 and May 11** — run the Saturday upload script so monitoring has real sales numbers
+3. **Re-run `14_model_monitoring.ipynb`** — check WAPE for May 4 and May 11. If only March was bad → data issue. If all weeks are bad → retrain the model.
+4. **Generate new forecasts** — only after confirming model is reliable, run:
+   ```bash
+   PYTHONPATH=. python src/forecasting/generate_weekly_forecast.py
+   ```
+   This will generate the week of 2026-05-26.
+5. **Review notebooks 16 and 17** — check outputs of demand sensing and inventory optimisation
+6. **Continue Phase 5** — GenAI assistant (`src/genai/`) and Phase 6 — API (`src/api/app.py`)
 
 ---
 
