@@ -3,7 +3,37 @@
 
 ---
 
-## 2026-05-25 (STOPPED HERE — resume from this point)
+## 2026-05-26 (STOPPED HERE — resume from this point)
+
+### What I worked on
+- Understood the full retraining process end to end
+- Understood temporal train/test split — train up to cutoff, test on unseen weeks after
+- Understood the forecasting feedback loop — forecast → actuals come in → compare weekly in notebook 14 → retrain when WAPE breaches 20%
+- Confirmed training scripts exist in `src/models/` — v2, v3, v4 and baseline
+- Read `baseline_units_model.py` — confirmed it is a training script (misleading name), trains RandomForest, cutoff hardcoded at `2026-01-01`
+
+### Key findings / decisions
+- Training scripts are well structured but NOT ready to run as-is — two things need fixing first:
+  1. **Data is stale** — `data/processed/` CSVs end at 2026-03-23, need refreshing from Supabase
+  2. **Cutoff date is hardcoded** — `baseline_units_model.py` uses `2026-01-01`, need to verify v3 and v4 scripts use the same and update accordingly
+- Plan is to train on data up to ~March 23, test on last few weeks, then forecast April/May going forward
+- As April/May actuals come in each Saturday, compare against forecasts in notebook 14 weekly
+
+### EXACT NEXT STEPS (in order)
+
+1. **Open `train_weekly_model_v3_calendar.py`** — check what cutoff date it uses and confirm it matches the plan
+2. **Run `src/data/make_weekly_dataset_v4_promotions.py`** — refreshes `data/processed/` CSVs with latest data from Supabase
+3. **Update the cutoff date** in the v3 training script to reflect the new train/test boundary
+4. **Run `train_weekly_model_v3_calendar.py`** — retrain the model on fresh data
+5. **Run `compare_models.py`** — compare new model WAPE vs old, confirm improvement
+6. **Update `models/model_registry.csv`** — mark new retrained model as `best`, archive old v3
+7. **Run `generate_weekly_forecast.py`** — generate forecast for week of 2026-05-26
+8. **Run notebook 15** — visualise the new forecast
+9. **Every Saturday going forward** — upload actuals, run notebook 14, check WAPE
+
+---
+
+## 2026-05-25
 
 ### What I worked on
 - Reviewed the full forecast pipeline end-to-end
