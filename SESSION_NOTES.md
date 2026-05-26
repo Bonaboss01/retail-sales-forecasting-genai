@@ -3,7 +3,7 @@
 
 ---
 
-## 2026-05-26 (STOPPED HERE — resume from this point)
+## 2026-05-26 23:54 (STOPPED HERE — resume from this point)
 
 ### What I worked on
 - Understood the full retraining process end to end
@@ -11,25 +11,28 @@
 - Understood the forecasting feedback loop — forecast → actuals come in → compare weekly in notebook 14 → retrain when WAPE breaches 20%
 - Confirmed training scripts exist in `src/models/` — v2, v3, v4 and baseline
 - Read `baseline_units_model.py` — confirmed it is a training script (misleading name), trains RandomForest, cutoff hardcoded at `2026-01-01`
+- Discovered all 3 data scripts (`make_weekly_dataset.py`, `v2`, `v3_calendar`) were pointing to **localhost** — updated all 3 to use `src/data/db_connection.py` (Supabase)
+- **Successfully refreshed all processed datasets from Supabase**
 
 ### Key findings / decisions
-- Training scripts are well structured but NOT ready to run as-is — two things need fixing first:
-  1. **Data is stale** — `data/processed/` CSVs end at 2026-03-23, need refreshing from Supabase
-  2. **Cutoff date is hardcoded** — `baseline_units_model.py` uses `2026-01-01`, need to verify v3 and v4 scripts use the same and update accordingly
-- Plan is to train on data up to ~March 23, test on last few weeks, then forecast April/May going forward
-- As April/May actuals come in each Saturday, compare against forecasts in notebook 14 weekly
+- Do NOT change the cutoff date to get a better WAPE — cutoff is a business decision, not a tuning knob
+- Cutoff date in v3 training script is currently `2026-01-01` — needs updating before retraining
+- New cutoff agreed: train `< 2026-03-31`, test `>= 2026-04-01` (5 weeks of April–May as unseen test)
+- Data now refreshed: `data/processed/weekly_sales_v3_calendar.csv` covers **2020-12-28 → 2026-05-04** (was March 23, gained 6 extra weeks)
+- v3 training script is open and ready — just needs the 1-line cutoff change before running
 
 ### EXACT NEXT STEPS (in order)
 
-1. **Open `train_weekly_model_v3_calendar.py`** — check what cutoff date it uses and confirm it matches the plan
-2. **Run `src/data/make_weekly_dataset_v4_promotions.py`** — refreshes `data/processed/` CSVs with latest data from Supabase
-3. **Update the cutoff date** in the v3 training script to reflect the new train/test boundary
-4. **Run `train_weekly_model_v3_calendar.py`** — retrain the model on fresh data
-5. **Run `compare_models.py`** — compare new model WAPE vs old, confirm improvement
-6. **Update `models/model_registry.csv`** — mark new retrained model as `best`, archive old v3
-7. **Run `generate_weekly_forecast.py`** — generate forecast for week of 2026-05-26
-8. **Run notebook 15** — visualise the new forecast
-9. **Every Saturday going forward** — upload actuals, run notebook 14, check WAPE
+1. ✅ Updated cutoff in `train_weekly_model_v3_calendar.py` — train `< 2026-03-31`, test `>= 2026-04-01`
+2. ✅ Retrained model — new performance: **MAE 2.1093, WAPE 14.71%** (improved from MAE 2.37, WAPE 15.00%)
+3. ✅ Updated `models/model_registry.csv` — `weekly_model_retrained_v3_calendar` marked as `best`, old v3 archived
+4. **Run `generate_weekly_forecast.py`** — will automatically pick up the new best model:
+   ```bash
+   PYTHONPATH=. python3 src/forecasting/generate_weekly_forecast.py
+   ```
+5. **Run notebook 15** — visualise the new forecast
+6. **Optionally retrain v4** — same cutoff change in `train_weekly_model_v4_promotions.py`, run it, compare WAPE against retrained v3
+7. **Every Saturday** — upload actuals, run notebook 14, check WAPE stays below 20%
 
 ---
 
