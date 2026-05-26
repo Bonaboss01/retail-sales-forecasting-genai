@@ -2,27 +2,16 @@
 
 import os
 import pandas as pd
-import psycopg2
+from src.data.db_connection import get_engine
 
-
-DB_CONFIG = {
-    "host": "localhost",
-    "database": "sunnybest_sfs",
-    "user": "bonaventure",
-    "password": ""
-}
 
 QUERY = "SELECT * FROM core.fact_sales"
 OUTPUT_PATH = "data/processed/weekly_sales_v2.csv"
 
 
 def load_data() -> pd.DataFrame:
-    conn = psycopg2.connect(**DB_CONFIG)
-    try:
-        df = pd.read_sql(QUERY, conn)
-    finally:
-        conn.close()
-    return df
+    engine = get_engine()
+    return pd.read_sql(QUERY, engine)
 
 
 def clean_data(df: pd.DataFrame) -> pd.DataFrame:

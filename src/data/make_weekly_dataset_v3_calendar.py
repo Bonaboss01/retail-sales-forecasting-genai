@@ -2,19 +2,12 @@
 
 import os
 import pandas as pd
-import psycopg2
+from src.data.db_connection import get_engine
 
 
 # -----------------------------
 # Config
 # -----------------------------
-DB_CONFIG = {
-    "host": "localhost",
-    "database": "sunnybest_sfs",
-    "user": "bonaventure",
-    "password": ""
-}
-
 WEEKLY_V2_PATH = "data/processed/weekly_sales_v2.csv"
 OUTPUT_PATH = "data/processed/weekly_sales_v3_calendar.csv"
 
@@ -29,12 +22,8 @@ def load_weekly_v2(path: str) -> pd.DataFrame:
 
 
 def load_calendar() -> pd.DataFrame:
-    conn = psycopg2.connect(**DB_CONFIG)
-    try:
-        calendar = pd.read_sql(CALENDAR_QUERY, conn)
-    finally:
-        conn.close()
-    return calendar
+    engine = get_engine()
+    return pd.read_sql(CALENDAR_QUERY, engine)
 
 
 # -----------------------------

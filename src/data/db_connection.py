@@ -25,7 +25,7 @@ def get_engine():
     password = _get_password()
     url = f"postgresql+psycopg2://{_USER}:{password}@{_HOST}:{_PORT}/{_DATABASE}"
     return create_engine(url, pool_pre_ping=True, pool_recycle=300)
-
+[]
 
 def run_query(query: str, params: dict | None = None) -> pd.DataFrame:
     """Execute a SQL query and return the result as a DataFrame."""
@@ -40,3 +40,8 @@ def run_table(table_name: str, limit: int | None = None) -> pd.DataFrame:
     if limit:
         query += f" LIMIT {limit}"
     return run_query(query)
+
+
+
+
+
