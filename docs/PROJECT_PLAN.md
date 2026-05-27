@@ -336,6 +336,19 @@ PYTHONPATH=. python3 src/forecasting/generate_weekly_forecast.py
 
 ---
 
+## Known Limitations
+
+| # | Limitation | Impact | Future Fix |
+|---|-----------|--------|------------|
+| 1 | **All stores carry all 120 products** — in reality different stores stock different products based on size, location and demand | Forecasts are generated for store-product combinations that may not actually exist, inflating row count and potentially WAPE | Filter forecast to only active store-product pairs using actual sales history (assortment planning) |
+| 2 | **Synthetic data** — sales, promotions, inventory and weather are all simulated, not real SunnyBest transactions | Model behaviour may not reflect true real-world demand patterns | Replace with real transaction data when available |
+| 3 | **1-week forecast horizon** — model only predicts one week ahead at a time | Buyers cannot plan more than one week out; lag errors compound on longer horizons | Extend to 4-week rolling horizon |
+| 4 | **No assortment features** — model doesn't know whether a product is actively stocked at a store | May predict sales for products not available in a store | Add `is_active` flag per store-product as a feature |
+| 5 | **Promotions assumed zero for future weeks** — forecast script sets all promo features to 0 for the forecast week | If a promotion is planned, the forecast will underestimate demand | Allow promo inputs to be passed externally before running forecast |
+| 6 | **Model saved as fixed filename** — training scripts overwrite the same `.pkl` file on every retrain | Old model files are lost; cannot roll back to a previous model | Update `MODEL_PATH` in training scripts to include date before retraining |
+
+---
+
 ## Environment Setup
 
 ```bash
