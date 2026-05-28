@@ -7,6 +7,7 @@
 # Usage:
 #   PYTHONPATH=. python src/forecasting/generate_weekly_forecast.py
 
+import argparse
 import os
 import warnings
 
@@ -61,11 +62,16 @@ def create_lag_features(df: pd.DataFrame) -> pd.DataFrame:
 
 # ── Build next-week feature rows ──────────────────────────
 
-def build_future_rows(df: pd.DataFrame) -> pd.DataFrame:
+def build_future_rows(df: pd.DataFrame, forecast_week: str = None) -> pd.DataFrame:
     df = df.sort_values(["store_id", "product_id", "week_start"]).copy()
 
     last_date = df["week_start"].max()
-    next_week = last_date + pd.Timedelta(days=7)
+
+    if forecast_week:
+        next_week = pd.Timestamp(forecast_week)
+        print(f"Forecast week   : {next_week.date()}  (manually specified)")
+    else:
+        next_week = last_date + pd.Timedelta(days=7)
 
     print(f"Last data week  : {last_date.date()}")
     print(f"Forecasting week: {next_week.date()}")
@@ -138,6 +144,11 @@ def save_forecast(df: pd.DataFrame, path: str) -> None:
 # ── Main ──────────────────────────────────────────────────
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Generate weekly forecast")
+    parser.add_argument("--week", type=str, default=None,
+                        help="Forecast week start date (YYYY-MM-DD). Defaults to latest data week + 7 days.")
+    args = parser.parse_args()
+
     print("Loading best model from registry...")
     model, model_version = load_best_model()
 
@@ -154,7 +165,7 @@ def main() -> None:
     df = create_lag_features(df)
 
     print("\nBuilding next-week rows...")
-    future = build_future_rows(df)
+    future = build_future_rows(df, forecast_week=args.week)
 
     print("\nEncoding and aligning to model features...")
     X_future = encode_and_align(future, model)
