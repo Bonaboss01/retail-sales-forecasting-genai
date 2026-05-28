@@ -3,37 +3,22 @@
 
 ---
 
-## 2026-05-27 (STOPPED HERE — resume from this point)
+## 2026-05-28 (STOPPED HERE — resume from this point)
 
-### What I worked on
-- Updated PROJECT_PLAN.md — full state-of-the-art project plan with all workstreams, scripts, models, operations
-- Created WEEKLY_OPERATIONS.md — step-by-step Saturday guide to follow every week
-- Retrained v4 model — `weekly_model_v4_promotions_2026_05` (MAE 2.12, WAPE 14.77%) — v3 still best
-- Updated model registry with date-based naming convention (YYYY_MM)
-- Fixed model registry path issue — training script overwrites same .pkl file, registry must point to actual filename
-- Successfully ran `generate_weekly_forecast.py` — generated forecast for **week commencing 2026-05-11**
-- Understood the full forecasting loop end to end
-
-### Key findings / decisions
-- `generate_weekly_forecast.py` pulls data directly from Supabase (not processed CSVs) — always gets freshest lag features
-- Processed CSVs are only needed for retraining, not for forecasting
-- Supabase data ends at 2026-05-04 → forecast generated for 2026-05-11 (last known week + 7 days)
-- Training script saves model to hardcoded filename — update `MODEL_PATH` in script before retraining to avoid overwriting old models
-- Naming convention for models: `weekly_model_v3_calendar_YYYY_MM`
+### Where I am
+- Forecasting and monitoring pipeline is working end-to-end and in good shape
+- `data/outputs/weekly_forecasts.csv` has 4 clean weeks: May 4, 11, 18, 25 (3,360 rows)
+- Best model: `weekly_model_v3_calendar_2026_05` — MAE 2.1093, WAPE 14.71%
+- Notebook 14 (`14_weekly_forecast_analysis.ipynb`) — updated, shows all 4 weeks with Week 1–4 labels
+- Notebook 15 (`15_model_monitoring.ipynb`) — updated, filters from May 4, week labels on all charts and tables, stale March data removed
+- Saturday workflow documented in `docs/WEEKLY_OPERATIONS.md`
 
 ### EXACT NEXT STEPS (in order)
 
-1. **Run model monitoring** — compare May 11 forecast against actuals:
-   ```bash
-   PYTHONPATH=. python3 src/monitoring/model_monitor.py
-   ```
-2. **Open notebook 14** — review WAPE for week of May 11, check which stores/products had worst errors
-3. **Check WAPE decision:**
-   - Below 20% → model is healthy, continue
-   - Above 20% → investigate, consider retraining
-4. **Upload actuals for May 18 and May 25** to Supabase (these weeks have passed)
-5. **Re-run forecast script** — will generate forecast for the next available week
-6. **Continue with remaining project work** — see PROJECT_PLAN.md "Remaining Work" section
+1. **Review notebook 16** — open `notebooks/16_demand_sensing.ipynb`, understand what it currently does and what its outputs mean
+2. **Review notebook 17** — open `notebooks/17_inventory_optimisation.ipynb`, same — understand the outputs before building on top
+3. **Build the GenAI assistant** — work is in `src/genai/`; goal is to query forecasts and monitoring data in plain English using Claude API
+4. **Build the FastAPI layer** — `src/api/app.py`; wraps forecast generation and monitoring into HTTP endpoints so Power BI or any frontend can call them
 
 ---
 
