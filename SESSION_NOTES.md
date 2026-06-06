@@ -1,9 +1,11 @@
 # SESSION NOTES — SunnyBest AI Retail Forecasting System
 > Running log of working sessions. Add a new entry at the top each time you sit down.
+python3 generate_upload_to_supabase.py
 
 ---
 
 ## 2026-05-28 (STOPPED HERE — resume from this point)
+python3 generate_upload_to_supabase.py
 
 ### Where I am
 - Forecasting and monitoring pipeline is working end-to-end and in good shape
