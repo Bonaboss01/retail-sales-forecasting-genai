@@ -1,0 +1,40 @@
+# Use a lightweight official Python 3.11 image as the base
+# "slim" means it's a minimal version — smaller size, faster builds
+FROM python:3.11-slim
+
+# Don't write .pyc bytecode files — keeps the container clean
+ENV PYTHONDONTWRITEBYTECODE=1
+# Force Python to print logs immediately — essential for debugging in GCP
+ENV PYTHONUNBUFFERED=1
+
+# Set the working directory inside the container
+# All commands from here run inside /app
+WORKDIR /app
+
+# Install system-level build tools needed by some Python libraries
+# --no-install-recommends keeps it lean
+# rm -rf cleans up apt cache to reduce image size
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements.txt first (before the rest of the code)
+# Docker caches this layer — if requirements.txt hasn't changed,
+# it won't reinstall libraries on every rebuild (faster builds)
+COPY requirements.txt /app/requirements.txt
+
+# Install all Python libraries listed in requirements.txt
+# --no-cache-dir keeps the image size smaller
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+# Copy the entire project into the container
+# This happens AFTER pip install for better caching
+COPY . /app
+
+# Make the /app directory importable as a Python module path
+# Needed so scripts can import from src/ and other subdirectories
+ENV PYTHONPATH=/app
+
+# The default command to run when the container starts
+# This is what Vertex AI will execute when it runs your pipeline
+CMD ["python", "generate_upload_to_bigquery.py"]

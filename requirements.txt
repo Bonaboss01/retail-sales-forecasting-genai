@@ -8,3 +8,8 @@ xgboost
 joblib
 streamlit
 requests
+google-cloud-storage
+google-cloud-bigquery
+python-dotenv
+pyarrow
+db-dtypes
