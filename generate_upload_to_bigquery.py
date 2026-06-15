@@ -227,6 +227,14 @@ def upload_to_bigquery(df: pd.DataFrame, table_name: str, batch_size: int = 5000
 
     df = df.copy()
 
+    # Force these columns to string type, even if all values are None.
+    # Without this, BigQuery's schema auto-detection can incorrectly infer
+    # INT64 for columns that are entirely null in a given batch, causing
+    # a type mismatch when merging into the main table.
+    for col in ["promo_type", "restriction_type", "restriction_reason", "restriction_severity"]:
+        if col in df.columns:
+            df[col] = df[col].astype("string")
+
     # Convert date columns to plain date objects (BigQuery DATE type)
     for col in df.columns:
         if pd.api.types.is_datetime64_any_dtype(df[col]):

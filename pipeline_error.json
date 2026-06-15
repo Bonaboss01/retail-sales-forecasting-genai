@@ -1,0 +1,1385 @@
+[
+  {
+    "insertId": "fanca4d8khw",
+    "labels": {
+      "ml.googleapis.com/endpoint": "",
+      "ml.googleapis.com/job_state": "FAILED"
+    },
+    "logName": "projects/sfs-dev-498722/logs/ml.googleapis.com%2F1064306777283100672",
+    "receiveTimestamp": "2026-06-15T08:41:12.753169992Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "service"
+      },
+      "type": "ml_job"
+    },
+    "severity": "INFO",
+    "textPayload": "Job failed.",
+    "timestamp": "2026-06-15T08:41:11.227538665Z"
+  },
+  {
+    "insertId": "fanca4d8khu",
+    "labels": {
+      "ml.googleapis.com/endpoint": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/ml.googleapis.com%2F1064306777283100672",
+    "receiveTimestamp": "2026-06-15T08:41:11.748114925Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "service"
+      },
+      "type": "ml_job"
+    },
+    "severity": "INFO",
+    "textPayload": "Finished tearing down training program.",
+    "timestamp": "2026-06-15T08:41:10.914424678Z"
+  },
+  {
+    "insertId": "off8kof6r6exg",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": ""
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817694957Z"
+  },
+  {
+    "insertId": "off8kof6r6exf",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "Job ID: 56114fe2-6b68-4715-9a41-99bf7abdecce"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817671580Z"
+  },
+  {
+    "insertId": "off8kof6r6exe",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "Location: europe-west2"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817664606Z"
+  },
+  {
+    "insertId": "off8kof6r6exd",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": ""
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817649684Z"
+  },
+  {
+    "insertId": "off8kof6r6exc",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "google.api_core.exceptions.BadRequest: 400 GET https://bigquery.googleapis.com/bigquery/v2/projects/sfs-dev-498722/queries/56114fe2-6b68-4715-9a41-99bf7abdecce?maxResults=0&location=europe-west2&prettyPrint=false: Value has type INT64 which cannot be inserted into column promo_type, which has type STRING at [6:454]"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817639878Z"
+  },
+  {
+    "insertId": "off8kof6r6exb",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "    raise exceptions.from_http_response(response)"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817629473Z"
+  },
+  {
+    "insertId": "off8kof6r6exa",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "  File \"/usr/local/lib/python3.11/site-packages/google/cloud/_http/__init__.py\", line 494, in api_request"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817622634Z"
+  },
+  {
+    "insertId": "off8kof6r6ex9",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "             ^^^^^^^^"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817611654Z"
+  },
+  {
+    "insertId": "off8kof6r6ex8",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "    result = target()"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817604561Z"
+  },
+  {
+    "insertId": "off8kof6r6ex7",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "  File \"/usr/local/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py\", line 147, in retry_target"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817593239Z"
+  },
+  {
+    "insertId": "off8kof6r6ex6",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "    raise final_exc from source_exc"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817585026Z"
+  },
+  {
+    "insertId": "off8kof6r6ex5",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "  File \"/usr/local/lib/python3.11/site-packages/google/api_core/retry/retry_base.py\", line 216, in _retry_error_helper"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817576935Z"
+  },
+  {
+    "insertId": "off8kof6r6ex4",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "                 ^^^^^^^^^^^^^^^^^^^^"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817566139Z"
+  },
+  {
+    "insertId": "off8kof6r6ex3",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "    next_sleep = _retry_error_helper("
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817558805Z"
+  },
+  {
+    "insertId": "off8kof6r6ex2",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "  File \"/usr/local/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py\", line 156, in retry_target"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817551011Z"
+  },
+  {
+    "insertId": "off8kof6r6ex1",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "           ^^^^^^^^^^^^^"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817539482Z"
+  },
+  {
+    "insertId": "off8kof6r6ex0",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "    return retry_target("
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817529533Z"
+  },
+  {
+    "insertId": "off8kof6r6ewz",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "  File \"/usr/local/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py\", line 294, in retry_wrapped_func"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817519556Z"
+  },
+  {
+    "insertId": "off8kof6r6ewy",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "           ^^^^^^"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817512391Z"
+  },
+  {
+    "insertId": "off8kof6r6ewx",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "    return call()"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817504282Z"
+  },
+  {
+    "insertId": "off8kof6r6eww",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "  File \"/usr/local/lib/python3.11/site-packages/google/cloud/bigquery/client.py\", line 861, in _call_api"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817494240Z"
+  },
+  {
+    "insertId": "off8kof6r6ewv",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "               ^^^^^^^^^^^^^^^"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817485126Z"
+  },
+  {
+    "insertId": "off8kof6r6ewu",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "    resource = self._call_api("
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817477281Z"
+  },
+  {
+    "insertId": "off8kof6r6ewt",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "  File \"/usr/local/lib/python3.11/site-packages/google/cloud/bigquery/client.py\", line 2113, in _get_query_results"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817466156Z"
+  },
+  {
+    "insertId": "off8kof6r6ews",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817457234Z"
+  },
+  {
+    "insertId": "off8kof6r6ewr",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "    self._query_results = self._client._get_query_results("
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817445526Z"
+  },
+  {
+    "insertId": "off8kof6r6ewq",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "  File \"/usr/local/lib/python3.11/site-packages/google/cloud/bigquery/job/query.py\", line 1558, in _reload_query_results"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817437301Z"
+  },
+  {
+    "insertId": "off8kof6r6ewp",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "    self._reload_query_results(retry=retry, **reload_query_results_kwargs)"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817428462Z"
+  },
+  {
+    "insertId": "off8kof6r6ewo",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "  File \"/usr/local/lib/python3.11/site-packages/google/cloud/bigquery/job/query.py\", line 1766, in is_job_done"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817413897Z"
+  },
+  {
+    "insertId": "off8kof6r6ewn",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "             ^^^^^^^^"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817406037Z"
+  },
+  {
+    "insertId": "off8kof6r6ewm",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "    result = target()"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817398122Z"
+  },
+  {
+    "insertId": "off8kof6r6ewl",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "  File \"/usr/local/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py\", line 147, in retry_target"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817386466Z"
+  },
+  {
+    "insertId": "off8kof6r6ewk",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "    raise final_exc from source_exc"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817378581Z"
+  },
+  {
+    "insertId": "off8kof6r6ewj",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "  File \"/usr/local/lib/python3.11/site-packages/google/api_core/retry/retry_base.py\", line 216, in _retry_error_helper"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817368309Z"
+  },
+  {
+    "insertId": "off8kof6r6ewi",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "                 ^^^^^^^^^^^^^^^^^^^^"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817359650Z"
+  },
+  {
+    "insertId": "off8kof6r6ewh",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "    next_sleep = _retry_error_helper("
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817351937Z"
+  },
+  {
+    "insertId": "off8kof6r6ewg",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "  File \"/usr/local/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py\", line 156, in retry_target"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817342051Z"
+  },
+  {
+    "insertId": "off8kof6r6ewf",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "           ^^^^^^^^^^^^^"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817333854Z"
+  },
+  {
+    "insertId": "off8kof6r6ewe",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "    return retry_target("
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817326617Z"
+  },
+  {
+    "insertId": "off8kof6r6ewd",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "  File \"/usr/local/lib/python3.11/site-packages/google/api_core/retry/retry_unary.py\", line 294, in retry_wrapped_func"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817316357Z"
+  },
+  {
+    "insertId": "off8kof6r6ewc",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "              ^^^^^^^^^^^^^"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817308304Z"
+  },
+  {
+    "insertId": "off8kof6r6ewb",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "    while not is_job_done():"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817295287Z"
+  },
+  {
+    "insertId": "off8kof6r6ewa",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "  File \"/usr/local/lib/python3.11/site-packages/google/cloud/bigquery/job/query.py\", line 1797, in result"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817288322Z"
+  },
+  {
+    "insertId": "off8kof6r6ew9",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "    client.query(merge_sql).result()"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817279989Z"
+  },
+  {
+    "insertId": "off8kof6r6ew8",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "  File \"/app/generate_upload_to_bigquery.py\", line 269, in upload_to_bigquery"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817269537Z"
+  },
+  {
+    "insertId": "off8kof6r6ew7",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "    upload_to_bigquery(sales_df,              \"fact_sales\")"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817261448Z"
+  },
+  {
+    "insertId": "off8kof6r6ew6",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "  File \"/app/generate_upload_to_bigquery.py\", line 920, in main"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817253553Z"
+  },
+  {
+    "insertId": "off8kof6r6ew5",
+    "jsonPayload": {
+      "levelname": "ERROR",
+      "message": "    main()"
+    },
+    "labels": {
+      "compute.googleapis.com/resource_id": "4765723889655484602",
+      "compute.googleapis.com/resource_name": "gke-cml-0615-074640--e2-standard-4-43-6161c127-hhbq",
+      "compute.googleapis.com/zone": "europe-west2-a",
+      "ml.googleapis.com/job_id/log_area": "root",
+      "ml.googleapis.com/tpu_worker_id": "",
+      "ml.googleapis.com/trial_id": "",
+      "ml.googleapis.com/trial_type": ""
+    },
+    "logName": "projects/sfs-dev-498722/logs/workerpool0-0",
+    "receiveTimestamp": "2026-06-15T08:38:12.236503751Z",
+    "resource": {
+      "labels": {
+        "job_id": "1064306777283100672",
+        "project_id": "sfs-dev-498722",
+        "task_name": "workerpool0-0"
+      },
+      "type": "ml_job"
+    },
+    "severity": "ERROR",
+    "timestamp": "2026-06-15T08:38:08.817239806Z"
+  }
+]

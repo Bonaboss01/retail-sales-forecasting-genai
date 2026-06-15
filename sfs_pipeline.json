@@ -1,0 +1,43 @@
+{
+  "components": {
+    "comp-run-sfs-data-pipeline": {
+      "executorLabel": "exec-run-sfs-data-pipeline"
+    }
+  },
+  "deploymentSpec": {
+    "executors": {
+      "exec-run-sfs-data-pipeline": {
+        "container": {
+          "command": [
+            "python",
+            "generate_upload_to_bigquery.py"
+          ],
+          "image": "europe-west2-docker.pkg.dev/sfs-dev-498722/sfs-pipeline/sfs-pipeline:latest"
+        }
+      }
+    }
+  },
+  "pipelineInfo": {
+    "description": "Runs the SunnyX SFS synthetic data generator and uploads to BigQuery",
+    "name": "sfs-data-pipeline"
+  },
+  "root": {
+    "dag": {
+      "tasks": {
+        "run-sfs-data-pipeline": {
+          "cachingOptions": {
+            "enableCache": true
+          },
+          "componentRef": {
+            "name": "comp-run-sfs-data-pipeline"
+          },
+          "taskInfo": {
+            "name": "run-sfs-data-pipeline"
+          }
+        }
+      }
+    }
+  },
+  "schemaVersion": "2.1.0",
+  "sdkVersion": "kfp-2.16.1"
+}
