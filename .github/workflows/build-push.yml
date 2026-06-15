@@ -1,0 +1,63 @@
+name: Build and Push SFS Pipeline Image
+
+# Trigger: runs automatically whenever code is pushed to the main branch
+on:
+  push:
+    branches:
+      - main
+    paths:
+      # Only run this workflow if these files change --
+      # avoids rebuilding the image for unrelated changes (docs, notebooks etc.)
+      - "generate_upload_to_bigquery.py"
+      - "requirements.txt"
+      - "docker/Dockerfile.pipeline"
+      - ".github/workflows/build-push.yml"
+
+# Required permissions for Workload Identity Federation:
+#   id-token: write -- lets GitHub generate an OIDC token to prove its identity to GCP
+#   contents: read  -- lets the workflow check out your repo's code
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest   # GitHub's runners are linux/amd64 -- matches Vertex AI!
+
+    steps:
+      # Step 1: Get your repo's code onto the runner
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Authenticate to GCP using Workload Identity Federation
+      # No passwords or keys stored anywhere -- GitHub proves its identity
+      # via OIDC, and GCP checks it against the trust relationship we set up.
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: "projects/207807817258/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider"
+          service_account: "github-actions-deployer@sfs-dev-498722.iam.gserviceaccount.com"
+
+      # Step 3: Configure Docker to authenticate with Artifact Registry
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker europe-west2-docker.pkg.dev --quiet
+
+      # Step 4: Build the Docker image
+      # --platform linux/amd64 ensures compatibility with Vertex AI
+      # (GitHub's runners are already amd64, but we keep this explicit for clarity)
+      - name: Build Docker image
+        run: |
+          docker build --platform linux/amd64 \
+            -f docker/Dockerfile.pipeline \
+            -t europe-west2-docker.pkg.dev/sfs-dev-498722/sfs-pipeline/sfs-pipeline:latest \
+            .
+
+      # Step 5: Push the image to Artifact Registry
+      - name: Push Docker image
+        run: |
+          docker push europe-west2-docker.pkg.dev/sfs-dev-498722/sfs-pipeline/sfs-pipeline:latest
+
+      # Step 6: Confirm success
+      - name: Done
+        run: echo "Image pushed successfully to Artifact Registry"
