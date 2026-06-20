@@ -14,13 +14,14 @@ import warnings
 import joblib
 import pandas as pd
 
+from src.data.make_weekly_dataset_bq import build_dataset
+
 warnings.filterwarnings("ignore")
 
 
 # ── Config ────────────────────────────────────────────────
 REGISTRY_PATH  = "models/model_registry.csv"
 FORECAST_PATH  = "data/outputs/weekly_forecasts.csv"
-DATA_PATH      = "data/processed/weekly_sales_v3_calendar.csv"
 TARGET         = "units_sold"
 
 
@@ -151,8 +152,8 @@ def main() -> None:
     print("Loading best model from registry...")
     model, model_version = load_best_model()
 
-    print("\nLoading weekly dataset from BigQuery CSV...")
-    df = pd.read_csv(DATA_PATH)
+    print("\nLoading weekly dataset from BigQuery...")
+    df = build_dataset()
 
     df["week_start"] = pd.to_datetime(df["week_start"])
     df["store_id"]   = df["store_id"].astype(str)
