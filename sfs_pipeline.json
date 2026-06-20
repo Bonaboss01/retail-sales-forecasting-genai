@@ -1,16 +1,16 @@
 {
   "components": {
-    "comp-run-sfs-data-pipeline": {
-      "executorLabel": "exec-run-sfs-data-pipeline"
+    "comp-run-weekly-pipeline": {
+      "executorLabel": "exec-run-weekly-pipeline"
     }
   },
   "deploymentSpec": {
     "executors": {
-      "exec-run-sfs-data-pipeline": {
+      "exec-run-weekly-pipeline": {
         "container": {
           "command": [
             "python",
-            "generate_upload_to_bigquery.py"
+            "weekly_pipeline.py"
           ],
           "image": "europe-west2-docker.pkg.dev/sfs-dev-498722/sfs-pipeline/sfs-pipeline:latest"
         }
@@ -18,21 +18,21 @@
     }
   },
   "pipelineInfo": {
-    "description": "Runs the SunnyX SFS synthetic data generator and uploads to BigQuery",
-    "name": "sfs-data-pipeline"
+    "description": "Generates sales data, forecasts next week, and uploads results to BigQuery",
+    "name": "sfs-weekly-pipeline"
   },
   "root": {
     "dag": {
       "tasks": {
-        "run-sfs-data-pipeline": {
+        "run-weekly-pipeline": {
           "cachingOptions": {
             "enableCache": true
           },
           "componentRef": {
-            "name": "comp-run-sfs-data-pipeline"
+            "name": "comp-run-weekly-pipeline"
           },
           "taskInfo": {
-            "name": "run-sfs-data-pipeline"
+            "name": "run-weekly-pipeline"
           }
         }
       }

@@ -23,30 +23,45 @@ warnings.filterwarnings("ignore")
 REGISTRY_PATH  = "models/model_registry.csv"
 FORECAST_PATH  = "data/outputs/weekly_forecasts.csv"
 TARGET         = "units_sold"
+GCS_BUCKET     = "sfs-dev-pipeline-root"
+GCS_MODEL_DIR  = "models"
 
 
-# ── Load best model from registry ────────────────────────
+# ── Load best model (local first, GCS fallback for container) ────────────────
 
 def load_best_model():
-    if not os.path.exists(REGISTRY_PATH):
-        raise FileNotFoundError(f"Registry not found: {REGISTRY_PATH}")
+    import io
+    from google.cloud import storage
 
-    registry = pd.read_csv(REGISTRY_PATH, comment="#")
+    # Load registry — try local first, fall back to GCS
+    if os.path.exists(REGISTRY_PATH):
+        registry = pd.read_csv(REGISTRY_PATH, comment="#")
+    else:
+        gcs = storage.Client()
+        blob = gcs.bucket(GCS_BUCKET).blob(f"{GCS_MODEL_DIR}/model_registry.csv")
+        registry = pd.read_csv(io.StringIO(blob.download_as_text()), comment="#")
+
     best = registry[registry["status"] == "best"]
-
     if best.empty:
         raise ValueError("No model marked as 'best' in model_registry.csv.")
 
     model_version = best.iloc[0]["model_version"]
     model_path    = best.iloc[0]["model_path"]
 
-    if not os.path.exists(model_path):
-        raise FileNotFoundError(f"Model file not found: {model_path}")
-
     print(f"Best model : {model_version}")
     print(f"Model path : {model_path}")
 
-    return joblib.load(model_path), model_version
+    # Load model — try local first, fall back to GCS
+    if os.path.exists(model_path):
+        return joblib.load(model_path), model_version
+
+    gcs_path = f"{GCS_MODEL_DIR}/{os.path.basename(model_path)}"
+    print(f"Local model not found — downloading from gs://{GCS_BUCKET}/{gcs_path}")
+    gcs = storage.Client()
+    blob = gcs.bucket(GCS_BUCKET).blob(gcs_path)
+    tmp_path = f"/tmp/{os.path.basename(model_path)}"
+    blob.download_to_filename(tmp_path)
+    return joblib.load(tmp_path), model_version
 
 
 # ── Feature engineering ───────────────────────────────────

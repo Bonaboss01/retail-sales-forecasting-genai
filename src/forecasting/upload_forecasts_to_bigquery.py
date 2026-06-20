@@ -35,11 +35,11 @@ def table_exists() -> bool:
 def upload(df: pd.DataFrame):
     total   = len(df)
     cols    = list(df.columns)
-    print(f"Uploading {total:,} rows → {TABLE_ID}")
+    print(f"Uploading {total:,} rows → {TABLE_ID} (appending new forecasts only)")
 
     for start in range(0, total, BATCH_SIZE):
-        end   = min(start + BATCH_SIZE, total)
-        batch = df.iloc[start:end].copy()
+        end     = min(start + BATCH_SIZE, total)
+        batch   = df.iloc[start:end].copy()
         temp_id = f"{PROJECT_ID}.{DATASET_ID}.tmp_{TABLE_NAME}_{uuid4().hex[:8]}"
 
         job_config = bigquery.LoadJobConfig(write_disposition="WRITE_TRUNCATE")
@@ -61,7 +61,7 @@ def upload(df: pd.DataFrame):
             """).result()
 
         client.delete_table(temp_id, not_found_ok=True)
-        print(f"  Uploaded rows {start + 1:,} – {end:,}")
+        print(f"  Rows {start + 1:,} – {end:,} done")
 
     print(f"Done — {TABLE_ID} is up to date.")
 

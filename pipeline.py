@@ -26,27 +26,23 @@ from kfp import compiler
 # in Week 2.
 
 @dsl.container_component
-def run_sfs_data_pipeline():
+def run_weekly_pipeline():
     return dsl.ContainerSpec(
         image="europe-west2-docker.pkg.dev/sfs-dev-498722/sfs-pipeline/sfs-pipeline:latest",
-        command=["python", "generate_upload_to_bigquery.py"],
+        command=["python", "weekly_pipeline.py"],
     )
 
 
 # =========================================================
 # PIPELINE
 # =========================================================
-# A "pipeline" is a sequence of components.
-# Right now we only have ONE step — but this structure is
-# what allows you to add more steps later (e.g. training,
-# evaluation, feature engineering).
 
 @dsl.pipeline(
-    name="sfs-data-pipeline",
-    description="Runs the SunnyX SFS synthetic data generator and uploads to BigQuery",
+    name="sfs-weekly-pipeline",
+    description="Generates sales data, forecasts next week, and uploads results to BigQuery",
 )
 def sfs_pipeline():
-    run_sfs_data_pipeline()
+    run_weekly_pipeline()
 
 
 # =========================================================
