@@ -97,30 +97,28 @@ def build_calendar_weekly(cal: pd.DataFrame) -> pd.DataFrame:
     )
 
 
-def main():
-    sales   = load_sales()
-    cal     = load_calendar()
+def build_dataset() -> pd.DataFrame:
+    sales  = load_sales()
+    cal    = load_calendar()
 
     print("Aggregating to weekly sales...")
-    weekly  = build_weekly_sales(sales)
+    weekly = build_weekly_sales(sales)
 
     print("Aggregating calendar features...")
-    cal_wk  = build_calendar_weekly(cal)
+    cal_wk = build_calendar_weekly(cal)
 
     print("Merging...")
     df = weekly.merge(cal_wk, on=["year", "week"], how="left")
     df["season"] = df["season"].fillna("unknown")
 
-    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
-    df.to_csv(OUTPUT_PATH, index=False)
-
-    print(f"\nSaved to : {OUTPUT_PATH}")
-    print(f"Rows     : {len(df):,}")
+    print(f"\nRows     : {len(df):,}")
     print(f"Stores   : {df['store_id'].nunique()}")
     print(f"Products : {df['product_id'].nunique()}")
     print(f"Date range: {df['week_start'].min()} → {df['week_start'].max()}")
-    print(df.head())
+
+    return df
 
 
 if __name__ == "__main__":
-    main()
+    df = build_dataset()
+    print(df.head())
