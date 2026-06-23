@@ -13,3 +13,5 @@ google-cloud-bigquery
 python-dotenv
 pyarrow
 db-dtypes
+mlflow
+shap
